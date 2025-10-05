@@ -64,26 +64,30 @@ export default function ScanQR() {
   };
 
   useEffect(() => {
-    return () => {
-      // Cleanup scanner on unmount
-      if (html5QrcodeRef.current && isScanning) {
-        html5QrcodeRef.current.stop().catch(() => {});
-        html5QrcodeRef.current.clear().catch(() => {});
-      }
-    };
-  }, [isScanning]);
+  return () => {
+    stopScanning(); // Utilise la même fonction sécurisée
+  };
+}, []);
+
 
   const stopScanning = async () => {
-    try {
-      if (html5QrcodeRef.current && isScanning) {
-        await html5QrcodeRef.current.stop();
-        await html5QrcodeRef.current.clear();
-      }
-    } catch (err) { 
-      console.log('Scanner cleanup error (ignored):', err.message);
-    }
-    setIsScanning(false);
-  };
+  if (!html5QrcodeRef.current || !isScanning) return; // ✅ Sécurité
+
+  try {
+    await html5QrcodeRef.current.stop();
+  } catch (err) {
+    console.log('Stop ignored:', err.message);
+  }
+
+  try {
+    await html5QrcodeRef.current.clear();
+  } catch (err) {
+    console.log('Clear ignored:', err.message);
+  }
+
+  setIsScanning(false);
+};
+
 
   const handleQRScan = async () => {
     setError('');
@@ -126,6 +130,7 @@ export default function ScanQR() {
             if (idMatch) {
               stopScanning();
               navigate(`/work/${idMatch[1]}`);
+              return;
             }
           }
         };
