@@ -7,14 +7,24 @@
       "wo": "Dan Géej"
     },
     "description": {
-      "fr": "Masque cérémonial de la culture Dan (Côte d’Ivoire), utilisé lors des danses initiatiques pour symboliser la protection et la sagesse.",
-      "en": "Ceremonial mask from the Dan culture (Ivory Coast), used during initiation dances to symbolize protection and wisdom.",
-      "wo": "Masquu bu jëm ci cosaanu Dan, di fane woon ci njàngat yu jëm kanam ngir jëmmal njub ak xam-xam."
+      "fr": "Masque cérémonial de la culture Dan (Côte d'Ivoire), utilisé lors des danses initiatiques pour symboliser la protection et la sagesse. Ce masque représente l'esprit protecteur de la communauté et est porté uniquement par les initiés lors des cérémonies sacrées.",
+      "en": "Ceremonial mask from the Dan culture (Ivory Coast), used during initiation dances to symbolize protection and wisdom. This mask represents the protective spirit of the community and is worn only by initiates during sacred ceremonies.",
+      "wo": "Masquu bu jëm ci cosaanu Dan, di fane woon ci njàngat yu jëm kanam ngir jëmmal njub ak xam-xam. Masquu bii mooy jëmmal ruwaay bu ngor ci jamono bi, ñu koy def ci njàngat yu rafet."
     },
     "image": "/media/masque1.jpg",
     "audio": "/media/masque1_fr.mp3",
     "video": "",
-    "history": "Origine : Côte d’Ivoire. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté."
+    "history": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
+    "culturalContext": {
+      "fr": "Les masques Dan sont des objets sacrés qui ne peuvent être vus que par les initiés. Ils représentent les esprits de la nature et servent de médiateurs entre les vivants et les ancêtres.",
+      "en": "Dan masks are sacred objects that can only be seen by initiates. They represent nature spirits and serve as mediators between the living and the ancestors.",
+      "wo": "Masquu Dan yi ay yoon yu rafet la, ñu gis ko rekk ñi jëm kanam. Ñu jëmmal ruwaay yu àddina ak ñu di jëfandikoo ngir jëkkal ci ñi dund ak ñi faatu."
+    },
+    "significance": {
+      "fr": "Symbole de protection, de sagesse et de continuité culturelle. Le masque enseigne les valeurs traditionnelles aux jeunes générations.",
+      "en": "Symbol of protection, wisdom and cultural continuity. The mask teaches traditional values to younger generations.",
+      "wo": "Simbolu ngor, xam-xam ak cosaanu aada. Masquu bi di jàngal jëmmiinu cosaanu ci ñi gëna ndaw."
+    }
   },
   {
     "id": 2,
@@ -24,14 +34,24 @@
       "wo": "Jàmm ak Baraka"
     },
     "description": {
-      "fr": "Sculpture féminine traditionnelle du Mali, symbole de fertilité et de prospérité. Souvent offerte lors des mariages.",
-      "en": "Traditional female sculpture from Mali, symbolizing fertility and prosperity. Often offered during marriage ceremonies.",
-      "wo": "Sutura bu jigéen ci Mali, di simbolu ndox muus ak barkeel. Ñu koy def ci jamono ngir njaboot."
+      "fr": "Sculpture féminine traditionnelle du Mali, symbole de fertilité et de prospérité. Souvent offerte lors des mariages, cette statuette incarne l'espoir de descendance et la bénédiction des ancêtres pour la nouvelle union.",
+      "en": "Traditional female sculpture from Mali, symbolizing fertility and prosperity. Often offered during marriage ceremonies, this statuette embodies the hope of offspring and ancestral blessing for the new union.",
+      "wo": "Sutura bu jigéen ci Mali, di simbolu ndox muus ak barkeel. Ñu koy def ci jamono ngir njaboot, sutura bii mooy jëmmal xel mu am ci ndox muus ak barkeelu ñi faatu ci njabootu bees."
     },
     "image": "/media/statue1.jpg",
     "audio": "/media/statue1_fr.mp3",
     "video": "",
-    "history": "Origine : Mali. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie."
+    "history": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
+    "culturalContext": {
+      "fr": "Dans la culture dogon, la fertilité est considérée comme un don des ancêtres. Ces statuettes sont souvent placées dans les chambres nuptiales pour assurer la prospérité du couple.",
+      "en": "In Dogon culture, fertility is considered a gift from ancestors. These statuettes are often placed in bridal chambers to ensure the couple's prosperity.",
+      "wo": "Ci cosaanu Dogon, ndox muus mooy ndimbalu ñi faatu. Sutura yii ñu koy dëkk ci kër ngir barkeelu njaboot bi."
+    },
+    "significance": {
+      "fr": "Représente la continuité de la vie et la transmission des valeurs familiales. Symbole d'espoir et de prospérité pour les générations futures.",
+      "en": "Represents the continuity of life and transmission of family values. Symbol of hope and prosperity for future generations.",
+      "wo": "Jëmmal cosaanu dund ak jëfandikoo jëmmiinu njaboot. Simbolu xel ak barkeel ci ñi dina ñëw."
+    }
   },
   {
     "id": 3,
@@ -41,13 +61,77 @@
       "wo": "Weer gi Kan"
     },
     "description": {
-      "fr": "Tissu tissé à la main par les artisans Akan (Ghana). Chaque motif représente un proverbe ou un message social.",
-      "en": "Handwoven fabric from the Akan people (Ghana). Each pattern carries a proverb or social message.",
-      "wo": "Weer bu ñu dajale ak loxo ci àddina Akan (Gana). Benn motif mooy xamal kàddu gu am solo ci jamono bi."
+      "fr": "Tissu tissé à la main par les artisans Akan (Ghana). Chaque motif représente un proverbe ou un message social. Ce tissu royal est porté uniquement par les chefs et les membres de la famille royale lors des cérémonies importantes.",
+      "en": "Handwoven fabric from the Akan people (Ghana). Each pattern carries a proverb or social message. This royal cloth is worn only by chiefs and royal family members during important ceremonies.",
+      "wo": "Weer bu ñu dajale ak loxo ci àddina Akan (Gana). Benn motif mooy xamal kàddu gu am solo ci jamono bi. Weer gi mooy def rekk buur yi ak ñi ci njabootu buur bi ci jamono yu am solo."
     },
     "image": "/media/tissu1.jpg",
     "audio": "/media/tissu1_fr.mp3",
     "video": "",
-    "history": "Origine : Ghana. Le tissu est porté lors des cérémonies royales pour exprimer l’identité et la dignité du peuple Akan."
+    "history": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
+    "culturalContext": {
+      "fr": "Le tissage est un art sacré chez les Akan. Chaque motif a une signification profonde et raconte l'histoire de la communauté. Les couleurs et les motifs varient selon le statut social.",
+      "en": "Weaving is a sacred art among the Akan. Each pattern has deep meaning and tells the community's story. Colors and patterns vary according to social status.",
+      "wo": "Dajal mooy jëfandikoo yu rafet ci Akan. Benn motif am na solo bu xóot ak mooy xamal taariixu jamono bi. Melo ak motif yi di wuute ci boppu nit."
+    },
+    "significance": {
+      "fr": "Symbole de pouvoir, de sagesse et d'identité culturelle. Le tissu royal unit la communauté autour de valeurs partagées et de traditions ancestrales.",
+      "en": "Symbol of power, wisdom and cultural identity. The royal cloth unites the community around shared values and ancestral traditions.",
+      "wo": "Simbolu doole, xam-xam ak boppu aada. Weer gi di jëkkal jamono bi ci jëmmiinu cosaanu ak aada."
+    }
+  },
+  {
+    "id": 4,
+    "title": {
+      "fr": "Sculpture Yoruba",
+      "en": "Yoruba Sculpture",
+      "wo": "Sutura Yoruba"
+    },
+    "description": {
+      "fr": "Sculpture en bois représentant une divinité Yoruba (Nigeria). Cette œuvre d'art sacrée est utilisée dans les rituels religieux pour honorer les orishas et maintenir la connexion spirituelle avec le divin.",
+      "en": "Wooden sculpture representing a Yoruba deity (Nigeria). This sacred artwork is used in religious rituals to honor the orishas and maintain spiritual connection with the divine.",
+      "wo": "Sutura ci kër bu jëmmal yoonu Yoruba (Nigeria). Jëmmiinu rafet bii di fane woon ci njàngat yu rafet ngir yiwu orisha yi ak ngir jëkkal ci yoonu rafet."
+    },
+    "image": "/media/yoruba1.jpg",
+    "audio": "/media/yoruba1_fr.mp3",
+    "video": "",
+    "history": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
+    "culturalContext": {
+      "fr": "Dans la religion Yoruba, chaque divinité a des attributs spécifiques et des pouvoirs particuliers. Ces sculptures servent de réceptacles pour l'énergie divine et facilitent la communication avec les esprits.",
+      "en": "In Yoruba religion, each deity has specific attributes and particular powers. These sculptures serve as receptacles for divine energy and facilitate communication with spirits.",
+      "wo": "Ci diine Yoruba, benn yoon am na jëmmiinu ak doole. Sutura yii di fane woon ngir jëkkal ci doole yu rafet ak ngir wax ak ruwaay yi."
+    },
+    "significance": {
+      "fr": "Représente la connexion spirituelle et la vénération des divinités. Symbole de protection divine et de guidance spirituelle pour la communauté.",
+      "en": "Represents spiritual connection and veneration of deities. Symbol of divine protection and spiritual guidance for the community.",
+      "wo": "Jëmmal jëkkal ci yoonu rafet ak yiwu yoon yi. Simbolu ngoru rafet ak jëfandikoo ci jamono bi."
+    }
+  },
+  {
+    "id": 5,
+    "title": {
+      "fr": "Bijoux Touareg",
+      "en": "Tuareg Jewelry",
+      "wo": "Yëngu Tuareg"
+    },
+    "description": {
+      "fr": "Parure traditionnelle en argent des Touaregs (Sahara). Ces bijoux raffinés sont portés par les femmes et les hommes comme symboles de statut social et de protection spirituelle. Chaque motif a une signification particulière.",
+      "en": "Traditional silver jewelry from the Tuareg people (Sahara). These refined pieces are worn by women and men as symbols of social status and spiritual protection. Each pattern has a particular meaning.",
+      "wo": "Yëngu cosaanu ci loxo ci Tuareg (Sahara). Yëngu yii di fane woon ci jigéen ak góor ngir jëmmal boppu jamono ak ngoru rafet. Benn motif am na solo."
+    },
+    "image": "/media/touareg1.jpg",
+    "audio": "/media/touareg1_fr.mp3",
+    "video": "",
+    "history": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
+    "culturalContext": {
+      "fr": "Chez les Touaregs, l'argent est plus précieux que l'or car il est associé à la lune et à la pureté. Les bijoux sont transmis de mère en fille et racontent l'histoire familiale.",
+      "en": "Among the Tuareg, silver is more precious than gold because it is associated with the moon and purity. Jewelry is passed from mother to daughter and tells the family story.",
+      "wo": "Ci Tuareg, loxo mooy gën a am solo ci wuuru ndax mooy jëkkal ci weer ak ndaw. Yëngu yi di jëfandikoo ci ndey ak doom ji ak ñu xamal taariixu njaboot bi."
+    },
+    "significance": {
+      "fr": "Symbole de protection, d'identité culturelle et de transmission générationnelle. Les bijoux Touareg unissent les générations et préservent les traditions nomades.",
+      "en": "Symbol of protection, cultural identity and generational transmission. Tuareg jewelry unites generations and preserves nomadic traditions.",
+      "wo": "Simbolu ngor, boppu aada ak jëfandikoo ci jamono. Yëngu Tuareg di jëkkal jamono yi ak ngir cosaanu aada."
+    }
   }
 ]
