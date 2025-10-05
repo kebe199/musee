@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "title": {
+      "fr": "Masque Dan",
+      "en": "Dan Mask",
+      "wo": "Dan Géej"
+    },
+    "description": {
+      "fr": "Masque cérémonial de la culture Dan (Côte d’Ivoire), utilisé lors des danses initiatiques pour symboliser la protection et la sagesse.",
+      "en": "Ceremonial mask from the Dan culture (Ivory Coast), used during initiation dances to symbolize protection and wisdom.",
+      "wo": "Masquu bu jëm ci cosaanu Dan, di fane woon ci njàngat yu jëm kanam ngir jëmmal njub ak xam-xam."
+    },
+    "image": "/media/masque1.jpg",
+    "audio": "/media/masque1_fr.mp3",
+    "video": "",
+    "history": "Origine : Côte d’Ivoire. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté."
+  },
+  {
+    "id": 2,
+    "title": {
+      "fr": "Statuette de Fertilité",
+      "en": "Fertility Statuette",
+      "wo": "Jàmm ak Baraka"
+    },
+    "description": {
+      "fr": "Sculpture féminine traditionnelle du Mali, symbole de fertilité et de prospérité. Souvent offerte lors des mariages.",
+      "en": "Traditional female sculpture from Mali, symbolizing fertility and prosperity. Often offered during marriage ceremonies.",
+      "wo": "Sutura bu jigéen ci Mali, di simbolu ndox muus ak barkeel. Ñu koy def ci jamono ngir njaboot."
+    },
+    "image": "/media/statue1.jpg",
+    "audio": "/media/statue1_fr.mp3",
+    "video": "",
+    "history": "Origine : Mali. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie."
+  },
+  {
+    "id": 3,
+    "title": {
+      "fr": "Tissu Royal Akan",
+      "en": "Akan Royal Cloth",
+      "wo": "Weer gi Kan"
+    },
+    "description": {
+      "fr": "Tissu tissé à la main par les artisans Akan (Ghana). Chaque motif représente un proverbe ou un message social.",
+      "en": "Handwoven fabric from the Akan people (Ghana). Each pattern carries a proverb or social message.",
+      "wo": "Weer bu ñu dajale ak loxo ci àddina Akan (Gana). Benn motif mooy xamal kàddu gu am solo ci jamono bi."
+    },
+    "image": "/media/tissu1.jpg",
+    "audio": "/media/tissu1_fr.mp3",
+    "video": "",
+    "history": "Origine : Ghana. Le tissu est porté lors des cérémonies royales pour exprimer l’identité et la dignité du peuple Akan."
+  }
+]
