@@ -112,7 +112,11 @@ export default function ScanQR() {
       const preferred = (cams.find(d => /back|rear|environment/i.test(d.label)) || cams[0]).id;
       const cameraId = selectedDeviceId || preferred;
 
-      const config = { fps: 10, qrbox: 250, aspectRatio: 1.0 };
+      // Calculer une taille de zone QR adaptative en fonction de la fenêtre et du cadre
+      const frame = scannerRef.current?.parentElement; // .qr-frame
+      const frameSize = frame ? Math.min(frame.clientWidth, frame.clientHeight) : Math.min(window.innerWidth * 0.9, 360);
+      const qrbox = Math.max(180, Math.floor(frameSize * 0.7)); // 70% du cadre, min 180px
+      const config = { fps: 10, qrbox, aspectRatio: 1.0 };
       const onScanSuccess = (decodedText) => {
           // Expect URL like http://.../work/ID or just ID
           try {
@@ -182,7 +186,7 @@ export default function ScanQR() {
                 <div className="corner bottom-left"></div>
                 <div className="corner bottom-right"></div>
               </div>
-              <div id="qr-reader" ref={scannerRef} style={{ width: 320, height: 320 }}></div>
+              <div id="qr-reader" ref={scannerRef}></div>
               <p>{translations[lang].instructions}</p>
             </div>
           </div>

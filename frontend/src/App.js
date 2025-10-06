@@ -8,12 +8,13 @@ import ScanQR from './pages/ScanQR';
 
 function App() {
   const [lang, setLang] = useState('fr');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pageBg = `${process.env.PUBLIC_URL}/img/museum-page.jpg`;
 
   return (
     <Router>
       <div
-        className="container"
+        className="app-shell"
         style={{
           backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.25) 100%), url(${pageBg})`,
           backgroundSize: 'cover',
@@ -21,16 +22,52 @@ function App() {
           backgroundAttachment: 'fixed'
         }}
       >
+        <div className="container">
         <header>
           <div className="header-left">
+            <button
+              className="hamburger mobile-only"
+              aria-label="Ouvrir le menu"
+              aria-controls="mobile-drawer"
+              aria-expanded={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(v => !v)}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
             <h1>🎨 Musée des Civilisations Noires</h1>
-            <nav className="header-nav">
+            <nav className="header-nav desktop-only">
               <a href="/" className="nav-link">Collection</a>
               <a href="/scan" className="nav-link">Scanner QR</a>
             </nav>
           </div>
-          <LanguageSelector lang={lang} setLang={setLang} />
+          <div className="desktop-only">
+            <LanguageSelector lang={lang} setLang={setLang} />
+          </div>
         </header>
+
+        {/* Backdrop pour fermer le tiroir */}
+        <div
+          className={`backdrop ${isMobileMenuOpen ? 'show' : ''}`}
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden={!isMobileMenuOpen}
+        />
+        {/* Tiroir latéral gauche */}
+        <div
+          id="mobile-drawer"
+          className={`mobile-drawer ${isMobileMenuOpen ? 'open' : ''}`}
+          role="dialog"
+          aria-modal="true"
+        >
+          <nav className="mobile-nav">
+            <a href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Collection</a>
+            <a href="/scan" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Scanner QR</a>
+          </nav>
+          <div className="mobile-lang">
+            <LanguageSelector lang={lang} setLang={(l) => { setLang(l); setIsMobileMenuOpen(false); }} />
+          </div>
+        </div>
 
         <Routes>
           <Route path="/" element={<Home lang={lang} />} />
@@ -53,6 +90,7 @@ function App() {
         <footer>
           <p>© 2025 Musée des Civilisations Noires - Hackathon Digitalisation</p>
         </footer>
+        </div>
       </div>
     </Router>
   );
