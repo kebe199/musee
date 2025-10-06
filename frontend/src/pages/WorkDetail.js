@@ -50,6 +50,7 @@ export default function WorkDetail({ lang }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasAudio, setHasAudio] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -64,6 +65,22 @@ export default function WorkDetail({ lang }) {
       })
       .finally(() => setLoading(false));
   }, [id]);
+
+  // Verify that the audio file is reachable before rendering the player
+  useEffect(() => {
+    let aborted = false;
+    async function verifyAudio() {
+      if (!work || !work.audio) { setHasAudio(false); return; }
+      try {
+        const res = await fetch(work.audio, { method: 'HEAD' });
+        if (!aborted) setHasAudio(res.ok);
+      } catch (_) {
+        if (!aborted) setHasAudio(false);
+      }
+    }
+    verifyAudio();
+    return () => { aborted = true; };
+  }, [work]);
 
   const toggleAudio = () => {
     const audio = document.getElementById('work-audio');
@@ -92,7 +109,7 @@ export default function WorkDetail({ lang }) {
       <div className="detail-content">
         <div className="artwork-section">
           <img src={work.image} alt={work.title[lang]} className="art-image" />
-          {work.audio && (
+          {hasAudio && (
             <div className="audio-section">
               <h3>{translations[lang].audioDescription}</h3>
               <audio 
