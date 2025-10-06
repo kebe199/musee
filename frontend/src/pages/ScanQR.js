@@ -187,8 +187,10 @@ export default function ScanQR() {
                 <div className="corner bottom-right"></div>
               </div>
               <div id="qr-reader" ref={scannerRef}></div>
-              <p>{translations[lang].instructions}</p>
             </div>
+            {!isScanning && (
+              <p style={{ marginTop: 8, color: '#6c757d' }}>{translations[lang].instructions}</p>
+            )}
           </div>
           <button onClick={handleQRScan} className="scan-button">
             {translations[lang].scanButton}
