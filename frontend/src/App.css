@@ -1200,32 +1200,40 @@ footer {
   .mobile-only.hamburger { display: inline-flex; }
   
   header h1 {
-    font-size: 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+  .header-left { flex-direction: row; align-items: center; gap: 10px; }
   
+  /* COMPRESSED HERO */
   .hero-section {
-    padding: 24px 16px;
+    padding: 12px 12px;
+    min-height: 180px;
+    margin-bottom: 20px;
   }
   
   .hero-section h2 {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
   }
   
   .subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 16px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
   }
   
   .search-section {
-    margin-top: 16px;
-    max-width: 420px;
+    margin-top: 8px;
+    max-width: 320px;
   }
   
   .search-input {
-    padding: 12px 16px;
-    font-size: 0.95rem;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
   }
   
   .works-grid {
@@ -1257,15 +1265,6 @@ footer {
     padding: 10px 16px;
     font-size: 0.9rem;
   }
-
-  header h1 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .header-left { flex-direction: row; align-items: center; gap: 10px; }
 }
 
 @media (max-width: 480px) {
@@ -1273,38 +1272,33 @@ footer {
     padding: 10px;
   }
   
-  header h1 { font-size: 1rem; }
+  header h1 { font-size: 0.95rem; }
   
+  /* COMPRESSED HERO (SMALLEST) */
   .hero-section {
-    padding: 18px 12px;
+    padding: 12px 10px;
+    min-height: 130px;
+    margin-bottom: 14px;
   }
   
   .hero-section h2 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   
   .subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
   }
   
   .search-section {
-    margin-top: 12px;
+    margin-top: 6px;
     max-width: 100%;
   }
   
   .search-input {
-    padding: 10px 14px;
-    font-size: 0.9rem;
-    border-radius: 16px;
-  }
-  
-  .hero-section h2 {
-    font-size: 1.8rem;
-  }
-  
-  .hero-section {
-    padding: 30px 15px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border-radius: 12px;
   }
   
   .card {
