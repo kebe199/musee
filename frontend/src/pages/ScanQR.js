@@ -66,20 +66,22 @@ export default function ScanQR() {
   useEffect(() => {
     return () => {
       // Cleanup scanner on unmount
-      if (html5QrcodeRef.current) {
+      if (html5QrcodeRef.current && isScanning) {
         html5QrcodeRef.current.stop().catch(() => {});
         html5QrcodeRef.current.clear().catch(() => {});
       }
     };
-  }, []);
+  }, [isScanning]);
 
   const stopScanning = async () => {
     try {
-      if (html5QrcodeRef.current) {
+      if (html5QrcodeRef.current && isScanning) {
         await html5QrcodeRef.current.stop();
         await html5QrcodeRef.current.clear();
       }
-    } catch (_) { /* ignore */ }
+    } catch (err) { 
+      console.log('Scanner cleanup error (ignored):', err.message);
+    }
     setIsScanning(false);
   };
 
