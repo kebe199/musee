@@ -1083,6 +1083,18 @@ footer {
   animation: fadeInUp 0.8s ease-out 1.7s both;
 }
 
+.footer-link {
+  color: #ff6b35;
+  text-decoration: underline;
+  margin-left: 8px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: #f7931e;
+  text-decoration: none;
+}
+
 /* Bottom advertising banner (auto-scrolling) */
 .ad-section {
   margin-top: 30px;

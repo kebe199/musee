@@ -1,0 +1,60 @@
+/* Styles pour la page À propos */
+.about-page {
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 28px;
+  margin: 32px auto;
+  max-width: 700px;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #222;
+  animation: fadeInUp 0.7s;
+}
+
+.about-page h1 {
+  font-size: 2.1rem;
+  margin-bottom: 18px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.about-page h2 {
+  font-size: 1.3rem;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.about-page ul {
+  padding-left: 22px;
+  margin-bottom: 12px;
+}
+
+.about-page li {
+  margin-bottom: 6px;
+}
+
+.about-page a {
+  color: #007baf;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.about-page a:hover {
+  color: #005f7a;
+}
+
+@media (max-width: 700px) {
+  .about-page {
+    padding: 18px 6vw;
+    margin: 16px 0;
+    font-size: 1rem;
+  }
+  .about-page h1 {
+    font-size: 1.4rem;
+  }
+  .about-page h2 {
+    font-size: 1.08rem;
+  }
+}

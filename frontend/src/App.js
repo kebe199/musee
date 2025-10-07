@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Home from './pages/Home';
 import WorkDetail from './pages/WorkDetail';
 import LanguageSelector from './components/LanguageSelector';
 import './App.css';
 import ScanQR from './pages/ScanQR';
+import About from './pages/About';
 
 function App() {
   const [lang, setLang] = useState('fr');
@@ -38,8 +40,9 @@ function App() {
             </button>
             <h1>🎨 Musée des Civilisations Noires</h1>
             <nav className="header-nav desktop-only">
-              <a href="/" className="nav-link">Collection</a>
-              <a href="/scan" className="nav-link">Scanner QR</a>
+              <Link to="/" className="nav-link">Collection</Link>
+              <Link to="/scan" className="nav-link">Scanner QR</Link>
+              <Link to="/about" className="nav-link">À propos</Link> {/* Nouveau bouton */}
             </nav>
           </div>
           <div className="desktop-only">
@@ -61,8 +64,9 @@ function App() {
           aria-modal="true"
         >
           <nav className="mobile-nav">
-            <a href="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Collection</a>
-            <a href="/scan" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Scanner QR</a>
+            <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Collection</Link>
+            <Link to="/scan" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Scanner QR</Link>
+            <Link to="/about" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>À propos</Link> {/* Nouveau bouton */}
           </nav>
           <div className="mobile-lang">
             <LanguageSelector lang={lang} setLang={(l) => { setLang(l); setIsMobileMenuOpen(false); }} />
@@ -73,8 +77,8 @@ function App() {
           <Route path="/" element={<Home lang={lang} />} />
           <Route path="/work/:id" element={<WorkDetail lang={lang} />} />
           <Route path="/scan" element={<ScanQR />} />
+          <Route path="/about" element={<About />} />
         </Routes>
-
         <section className="ad-section" aria-label="Publicités">
           <div className="ad-viewport">
             <div className="ad-track">
@@ -87,8 +91,10 @@ function App() {
           </div>
         </section>
 
-        <footer>
-          <p>© 2025 Musée des Civilisations Noires - Hackathon Digitalisation</p>
+        <footer className="app-footer">
+          <span>&copy; {new Date().getFullYear()} Musée des Civilisations Noires</span>
+          <span> | </span>
+          <Link to="/about" className="footer-link">À propos</Link>
         </footer>
         </div>
       </div>
