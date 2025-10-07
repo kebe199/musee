@@ -7,6 +7,8 @@ import LanguageSelector from './components/LanguageSelector';
 import './App.css';
 import ScanQR from './pages/ScanQR';
 import About from './pages/About';
+import Admin from './pages/Admin';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const [lang, setLang] = useState('fr');
@@ -15,6 +17,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div
         className="app-shell"
         style={{
@@ -88,6 +91,7 @@ function App() {
           <Route path="/work/:id" element={<WorkDetail lang={lang} />} />
           <Route path="/scan" element={<ScanQR />} />
           <Route path="/about" element={<About />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
         <section className="ad-section" aria-label="Publicités">
           <div className="ad-viewport">
@@ -111,6 +115,8 @@ function App() {
           <span>&copy; {new Date().getFullYear()} Musée des Civilisations Noires</span>
           <span> | </span>
           <Link to="/about" className="footer-link">À propos</Link>
+          <span> | </span>
+          <Link to="/admin" className="footer-link" style={{marginLeft: 16, opacity: 0.7}}>Admin</Link>
         </footer>
         </div>
       </div>
