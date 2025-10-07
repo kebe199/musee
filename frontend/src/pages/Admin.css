@@ -39,3 +39,29 @@
 .admin-works-list {
   margin-top: 20px;
 }
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f1f1;
+  text-align: left;
+}
+
+.admin-table th {
+  background: #f8f9fa;
+  color: #ff6b35;
+  font-weight: 700;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
