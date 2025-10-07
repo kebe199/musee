@@ -38,7 +38,17 @@ function App() {
               <span></span>
               <span></span>
             </button>
-            <h1>🎨 Musée des Civilisations Noires</h1>
+            <div className="header-logo-title">
+              <img
+                src={process.env.PUBLIC_URL + "/img/logo_MCN.png"}
+                alt="Logo Musée des Civilisations Noires"
+                className="logo-mcn"
+                style={{ height: 48, width: 48, marginRight: 14, verticalAlign: 'middle' }}
+              />
+              <h1 className="scrolling-title">
+                <span>🎨 Musée des Civilisations Noires</span>
+              </h1>
+            </div>
             <nav className="header-nav desktop-only">
               <Link to="/" className="nav-link">Collection</Link>
               <Link to="/scan" className="nav-link">Scanner QR</Link>
@@ -92,6 +102,12 @@ function App() {
         </section>
 
         <footer className="app-footer">
+          <img
+            src={process.env.PUBLIC_URL + "/img/logo_MCN.png"}
+            alt="Logo Musée des Civilisations Noires"
+            className="logo-mcn-footer"
+            style={{ height: 38, width: 38, marginRight: 10, verticalAlign: 'middle' }}
+          />
           <span>&copy; {new Date().getFullYear()} Musée des Civilisations Noires</span>
           <span> | </span>
           <Link to="/about" className="footer-link">À propos</Link>
