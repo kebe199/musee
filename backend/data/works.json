@@ -45,11 +45,11 @@
       "wo": "Yatteef sutura bu jigéen bu cosaanoo Mali, di màndargaal njuram ak naataange. Luwa bu ñuy faral di joxe ci céet yi, dafay fësal yaakaaru mbokk yi ak barkeb maam yi ci sëy bu bees."
     },
     "image": "/media/statue1.jpg",
-    "audio":  {
-    "fr": "/media/Statuette de fertilité.mp3",
-    "en": "/media/Fertility Statuette.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": {
+      "fr": "/media/Statuette de fertilité.mp3",
+      "en": "/media/Fertility Statuette.mp3",
+      "wo": "/media/.mp3"
+    },
     "video": "",
     "history": {
       "fr": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
@@ -83,10 +83,10 @@
     },
     "image": "/media/tissu1.jpg",
     "audio": {
-    "fr": "/media/tissu royal akan.mp3",
-    "en": "/media/Akan royal cloth.mp3",
-    "wo": "/media/.mp3"
-  },
+      "fr": "/media/tissu royal akan.mp3",
+      "en": "/media/Akan royal cloth.mp3",
+      "wo": "/media/.mp3"
+    },
     "video": "",
     "history": {
       "fr": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
@@ -117,11 +117,11 @@
       "wo": "Yatteef buñ defaree bant buy màndargaal yàllay Yoruba (Nigeria). Liggéeyu art bu sell boobu dañu koy jëfandikoo ci xew-xewu diine ngir sargal orishas yi ak tëye lëkkaloo ngëm ak Yàlla."
     },
     "image": "/media/yoruba1.jpg",
-    "audio":  {
-    "fr": "/media/Sculpture yoruba.mp3",
-    "en": "/media/yoruba sculpture.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": {
+      "fr": "/media/Sculpture yoruba.mp3",
+      "en": "/media/yoruba sculpture.mp3",
+      "wo": "/media/.mp3"
+    },
     "video": "",
     "history": {
       "fr": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
@@ -156,11 +156,11 @@
       "wo": "Takkaay xaalis cosaan yu waa Tuareg (Sahara). Jigéen ñi ak góor ñi dañuy sol takkaay yu rafet yooyu ngir wane ni dañu am doole ci askan wi ak seen ngëm. Motif bu nekk amna lu muy tekki."
     },
     "image": "/media/touareg1.jpg",
-    "audio":  {
-    "fr": "/media/bijoux touareg.mp3",
-    "en": "/media/Touareg jewerly.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": {
+      "fr": "/media/bijoux touareg.mp3",
+      "en": "/media/Touareg jewerly.mp3",
+      "wo": "/media/.mp3"
+    },
     "video": "",
     "history": {
       "fr": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
@@ -191,11 +191,11 @@
       "wo": "Ay mbir yuñ defaree përëm yu bawoo ci Royaume bu Benin (Nigeria bu leegi). Liggéey yooyu dañuy wane xam-xam bu amul fenn ci metalurgie ak taarix bu am solo, ñu ko joxe ci këri buur yi ak ci seeni xew-xew."
     },
     "image": "/media/benin1.jpg",
-    "audio":  {
-    "fr": "/media/.mp3",
-    "en": "/media/.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": {
+      "fr": "/media/.mp3",
+      "en": "/media/.mp3",
+      "wo": "/media/.mp3"
+    },
     "video": "",
     "history": {
       "fr": "Origine : Royaume du Bénin, XIIe-XIXe siècles. Ces bronzes étaient utilisés pour célébrer les ancêtres royaux et commémorer les événements historiques de la cour.",
