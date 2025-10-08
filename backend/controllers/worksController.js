@@ -30,11 +30,27 @@ function saveDataSafe(arr) {
 function attachFullUrls(req, work) {
   const host = `${req.protocol}://${req.get('host')}`;
   const isAbs = (u) => typeof u === 'string' && /^(https?:)?\/\//i.test(u);
+  const mapUrl = (val) => {
+    if (!val) return '';
+    if (typeof val === 'string') {
+      return isAbs(val) ? val : `${host}${val}`;
+    }
+    if (typeof val === 'object') {
+      const out = {};
+      for (const k of Object.keys(val)) {
+        const v = val[k];
+        if (!v) continue;
+        out[k] = isAbs(v) ? v : `${host}${v}`;
+      }
+      return out;
+    }
+    return '';
+  };
   return {
     ...work,
-    image: work.image ? (isAbs(work.image) ? work.image : `${host}${work.image}`) : '',
-    audio: work.audio ? (isAbs(work.audio) ? work.audio : `${host}${work.audio}`) : '',
-    video: work.video ? (isAbs(work.video) ? work.video : `${host}${work.video}`) : ''
+    image: mapUrl(work.image),
+    audio: mapUrl(work.audio),
+    video: mapUrl(work.video)
   };
 }
 

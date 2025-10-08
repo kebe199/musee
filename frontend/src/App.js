@@ -55,46 +55,69 @@ function App() {
       >
         <div className="container">
         <header>
-          <div className="header-left">
-            <button
-              className="hamburger mobile-only"
-              aria-label="Ouvrir le menu"
-              aria-controls="mobile-drawer"
-              aria-expanded={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(v => !v)}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-            <div className="header-logo-title">
-              <img
-                src={process.env.PUBLIC_URL + "/img/logo_MCN.png"}
-                alt="Logo Musée des Civilisations Noires"
-                className="logo-mcn"
-                style={{ height: 48, width: 48, marginRight: 14, verticalAlign: 'middle' }}
-              />
-              <h1 className="scrolling-title">
-                <span> Musée des Civilisations Noires</span>
+          {/* Mobile hamburger button */}
+          <button
+            className="hamburger mobile-only"
+            aria-label="Ouvrir le menu"
+            aria-controls="mobile-drawer"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(v => !v)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          {/* Mobile title with logo - only visible on mobile */}
+          <div className="header-logo-title mobile-only">
+            <img
+              src={process.env.PUBLIC_URL + "/img/logo_MCN.png"}
+              alt="Logo Musée des Civilisations Noires"
+              className="logo-mcn"
+              style={{ height: 32, width: 32 }}
+            />
+            <h1 className="scrolling-title">
+              <span>Musée des Civilisations Noires</span>
+            </h1>
+          </div>
+
+          {/* Desktop header structure */}
+          <div className="header-desktop">
+            {/* Top row: Logo + Title */}
+            <div className="header-top">
+              <div className="header-logo">
+                <img
+                  src={process.env.PUBLIC_URL + "/img/logo_MCN.png"}
+                  alt="Logo Musée des Civilisations Noires"
+                  className="logo-mcn"
+                />
+              </div>
+              <h1 className="header-title desktop-only">
+                Musée des Civilisations Noires
               </h1>
             </div>
-            <nav className="header-nav desktop-only">
-              <Link to="/" className="nav-link">Collection</Link>
-              <Link to="/scan" className="nav-link">Scanner QR</Link>
-              <Link to="/about" className="nav-link">À propos</Link> {/* Nouveau bouton */}
-            </nav>
-          </div>
-          <div className="desktop-only">
-            <LanguageSelector lang={lang} setLang={setLang} />
-            {authed ? (
-              <button className="nav-link" onClick={() => logout()} style={{ marginLeft: 12 }}>
-                Déconnexion
-              </button>
-            ) : (
-              <Link to="/login" className="nav-link" style={{ marginLeft: 12 }}>
-                Connexion
-              </Link>
-            )}
+
+            {/* Bottom row: Navigation + Controls */}
+            <div className="header-bottom">
+              <nav className="header-nav desktop-only">
+                <Link to="/" className="nav-link">Collection</Link>
+                <Link to="/scan" className="nav-link">Scanner QR</Link>
+                <Link to="/about" className="nav-link">À propos</Link>
+              </nav>
+              
+              <div className="header-controls desktop-only">
+                <LanguageSelector lang={lang} setLang={setLang} />
+                {authed ? (
+                  <button className="nav-link" onClick={() => logout()}>
+                    Déconnexion
+                  </button>
+                ) : (
+                  <Link to="/login" className="nav-link">
+                    Connexion
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
         </header>
 
@@ -164,10 +187,14 @@ function App() {
           />
           <span>&copy; {new Date().getFullYear()} Musée des Civilisations Noires</span>
           <span> | </span>
-          <Link to="/about" className="footer-link">À propos</Link>
-          <span> | </span>
+          <Link to="/about" className="footer-link">À propos </Link>
+          
           {isAdmin() && (
+            <>
+            <span> | </span>
             <Link to="/admin" className="footer-link" style={{marginLeft: 16, opacity: 0.7}}>Admin</Link>
+            </>
+            
           )}
         </footer>
         </div>
