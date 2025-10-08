@@ -487,6 +487,28 @@ header h1 {
 }
 
 /* (Reverted) Card descriptions use global .description color */
+.detail {
+  max-width: 1200px;        /* limite la largeur pour les grands écrans */
+  margin: 0 auto;            /* centre le contenu horizontalement */
+  padding: 20px 30px;        /* espace interne */
+  box-sizing: border-box;    /* inclut le padding dans la largeur */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;            /* couleur par défaut du texte */
+  background-color: white;
+  border-radius: 20px;
+}
+
+@media (max-width: 992px) {
+  .detail-content {
+    grid-template-columns: 1fr; /* passage en une seule colonne sur tablettes et mobiles */
+    gap: 30px;
+    padding: 30px 15px;
+  }
+
+  .art-image {
+    max-width: 100%;
+  }
+}
 
 .description {
   color: #7f8c8d;
