@@ -786,6 +786,51 @@ header > .desktop-only .nav-link { animation: navEnter 0.45s ease-out 0.22s both
   animation: fadeInUp 0.8s ease-out;
 }
 
+.scan-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-block;
+  color: #6c757d;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 25px;
+  background: #dedede;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.back-button::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 8px;
+  height: 2px;
+  background: #ff6b35;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.back-button:hover {
+  color: #ff6b35;
+  background: rgba(255,107,53,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255,107,53,0.2);
+}
+
+.back-button:hover::after {
+  transform: scaleX(1);
+}
+
 .scan-header h1 {
   color: #2c3e50;
   font-size: 2.5rem;
