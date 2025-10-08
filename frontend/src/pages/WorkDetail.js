@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { getCurrentEmail, isAuthenticated } from '../auth';
 
 const translations = {
   fr: {
@@ -51,12 +52,20 @@ export default function WorkDetail({ lang }) {
   const [error, setError] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasAudio, setHasAudio] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     axios.get(`/api/works/${id}`)
       .then(res => {
         setWork(res.data);
+        setLikes(res.data.likes || 0);
+        try {
+          const email = (getCurrentEmail() || '').toLowerCase();
+          const likedBy = Array.isArray(res.data.likedBy) ? res.data.likedBy.map(v => String(v).toLowerCase()) : [];
+          setLiked(email && likedBy.includes(email));
+        } catch { setLiked(false); }
         setError(null);
       })
       .catch(err => {
@@ -95,6 +104,23 @@ export default function WorkDetail({ lang }) {
     }
   };
 
+  async function handleLike() {
+    const email = getCurrentEmail();
+    if (!email) {
+      alert('Veuillez vous connecter pour aimer cette œuvre.');
+      return;
+    }
+    try {
+      const res = await axios.post(`/api/works/${id}/like`, { email });
+      if (res?.data && typeof res.data.likes === 'number') {
+        setLikes(res.data.likes);
+        if (typeof res.data.liked === 'boolean') setLiked(res.data.liked);
+      }
+    } catch (_) {
+      // ignore silently or show a toast
+    }
+  }
+
   if (loading) return <div className="loading">{translations[lang].loading}</div>;
   if (error) return <div className="error">{translations[lang].error}</div>;
   if (!work) return <div className="error">{translations[lang].error}</div>;
@@ -109,6 +135,10 @@ export default function WorkDetail({ lang }) {
       <div className="detail-content">
         <div className="artwork-section">
           <img src={work.image} alt={work.title[lang]} className="art-image" />
+          <div style={{marginTop: 12}}>
+            <div style={{fontWeight: 600, marginBottom: 8}}>❤ {likes} aime(s)</div>
+            <button className="btn-primary" onClick={handleLike}>{liked ? "Je n'aime plus" : 'Aimer'}</button>
+          </div>
           {hasAudio && (
             <div className="audio-section">
               <h3>{translations[lang].audioDescription}</h3>
