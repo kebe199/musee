@@ -199,7 +199,7 @@ Ce projet est développé dans le cadre du Hackathon Dakar Slush'D 2025 en parte
 ## 📞 Support
 
 Pour toute question ou support :
-- **Email** : support@musee-civilisations-noires.sn
+- **Email** : ckhadim.kebe@univ-thies.sn
 - **GitHub** : Issues du projet
 - **Documentation** : README.md
 
