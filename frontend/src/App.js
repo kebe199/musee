@@ -49,7 +49,7 @@ function App() {
                 style={{ height: 48, width: 48, marginRight: 14, verticalAlign: 'middle' }}
               />
               <h1 className="scrolling-title">
-                <span>🎨 Musée des Civilisations Noires</span>
+                <span> Musée des Civilisations Noires</span>
               </h1>
             </div>
             <nav className="header-nav desktop-only">
@@ -98,9 +98,11 @@ function App() {
             <div className="ad-track">
               <div className="ad-item"><img src="/img/ad-1.jpg" alt="Publicité 1" /></div>
               <div className="ad-item"><img src="/img/ad-2.jpg" alt="Publicité 2" /></div>
+              <div className="ad-item"><img src="/img/ad-3.jpg" alt="Publicité 3" /></div>
               {/* duplicates for seamless loop */}
               <div className="ad-item"><img src="/img/ad-1.jpg" alt="" aria-hidden="true" /></div>
               <div className="ad-item"><img src="/img/ad-2.jpg" alt="" aria-hidden="true" /></div>
+               <div className="ad-item"><img src="/img/ad-3.jpg" alt="" aria-hidden="true" /></div>
             </div>
           </div>
         </section>

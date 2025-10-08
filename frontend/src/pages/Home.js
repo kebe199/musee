@@ -8,7 +8,7 @@ const translations = {
     subtitle: "Découvrez le patrimoine culturel africain",
     loading: "Chargement des œuvres...",
     error: "Erreur lors du chargement",
-    search: "Rechercher une œuvre...",
+    search: "🔍 Rechercher une œuvre...",
     noResults: "Aucune œuvre trouvée",
     resultsCount: "œuvres trouvées"
   },
@@ -17,7 +17,7 @@ const translations = {
     subtitle: "Discover African cultural heritage",
     loading: "Loading artworks...",
     error: "Error loading artworks",
-    search: "Search for an artwork...",
+    search: "🔍 Search for an artwork...",
     noResults: "No artworks found",
     resultsCount: "artworks found"
   },
@@ -26,7 +26,7 @@ const translations = {
     subtitle: "Xamal aada Afrig",
     loading: "Nangu jëmmiinu...",
     error: "Jàppal nangu jëmmiinu",
-    search: "Seet jëmmiinu...",
+    search: "🔍 Seet jëmmiinu...",
     noResults: "Jëmmiinu gisul",
     resultsCount: "jëmmiinu gis na"
   }
