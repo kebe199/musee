@@ -74,83 +74,6 @@ function AddWorkForm({ onClose, onSuccess }) {
   );
 }
 
-function normalizeWorkForEdit(w) {
-  return {
-    title: { fr: w.title?.fr || '', en: w.title?.en || '', wo: w.title?.wo || '' },
-    description: { fr: w.description?.fr || '', en: w.description?.en || '', wo: w.description?.wo || '' },
-    image: w.image || '',
-    audio: w.audio || '',
-    video: w.video || '',
-    history: typeof w.history === 'string' ? w.history : (w.history?.fr || ''),
-    culturalContext: { fr: w.culturalContext?.fr || '', en: w.culturalContext?.en || '', wo: w.culturalContext?.wo || '' },
-    significance: { fr: w.significance?.fr || '', en: w.significance?.en || '', wo: w.significance?.wo || '' }
-  };
-}
-
-function EditWorkForm({ work, onClose, onSuccess }) {
-  const [form, setForm] = useState(normalizeWorkForEdit(work));
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  function handleChange(e) {
-    const { name, value, dataset } = e.target;
-    if (dataset.lang) {
-      setForm(f => ({ ...f, [name]: { ...f[name], [dataset.lang]: value } }));
-    } else {
-      setForm(f => ({ ...f, [name]: value }));
-    }
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-    try {
-      const res = await fetch(`/api/works/${work.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      });
-      if (!res.ok) throw new Error("Erreur lors de la mise à jour");
-      setLoading(false);
-      onSuccess();
-      onClose();
-    } catch (err) {
-      setError("Erreur lors de la mise à jour");
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="modal-backdrop">
-      <form className="add-work-form" onSubmit={handleSubmit}>
-        <h2>Modifier l'œuvre #{work.id}</h2>
-        <label>Titre FR <input name="title" data-lang="fr" value={form.title.fr} onChange={handleChange} required /></label>
-        <label>Titre EN <input name="title" data-lang="en" value={form.title.en} onChange={handleChange} /></label>
-        <label>Titre WO <input name="title" data-lang="wo" value={form.title.wo} onChange={handleChange} /></label>
-        <label>Description FR <textarea name="description" data-lang="fr" value={form.description.fr} onChange={handleChange} required /></label>
-        <label>Description EN <textarea name="description" data-lang="en" value={form.description.en} onChange={handleChange} /></label>
-        <label>Description WO <textarea name="description" data-lang="wo" value={form.description.wo} onChange={handleChange} /></label>
-        <label>Image <input name="image" value={form.image} onChange={handleChange} required /></label>
-        <label>Audio <input name="audio" value={form.audio} onChange={handleChange} /></label>
-        <label>Vidéo <input name="video" value={form.video} onChange={handleChange} /></label>
-        <label>Histoire <textarea name="history" value={form.history} onChange={handleChange} /></label>
-        <label>Contexte culturel FR <input name="culturalContext" data-lang="fr" value={form.culturalContext.fr} onChange={handleChange} /></label>
-        <label>Contexte culturel EN <input name="culturalContext" data-lang="en" value={form.culturalContext.en} onChange={handleChange} /></label>
-        <label>Contexte culturel WO <input name="culturalContext" data-lang="wo" value={form.culturalContext.wo} onChange={handleChange} /></label>
-        <label>Signification FR <input name="significance" data-lang="fr" value={form.significance.fr} onChange={handleChange} /></label>
-        <label>Signification EN <input name="significance" data-lang="en" value={form.significance.en} onChange={handleChange} /></label>
-        <label>Signification WO <input name="significance" data-lang="wo" value={form.significance.wo} onChange={handleChange} /></label>
-        {error && <div className="error">{error}</div>}
-        <div style={{display: 'flex', gap: 12, marginTop: 16}}>
-          <button type="submit" className="btn-primary" disabled={loading}>{loading ? 'Sauvegarde...' : 'Sauvegarder'}</button>
-          <button type="button" className="btn-secondary" onClick={onClose}>Annuler</button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
 export default function Admin() {
   const [works, setWorks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -158,7 +81,6 @@ export default function Admin() {
   const [viewMode, setViewMode] = useState('list');
   const [showAddForm, setShowAddForm] = useState(false);
   const [query, setQuery] = useState('');
-  const [editing, setEditing] = useState(null);
 
   useEffect(() => {
     fetch('/api/works?admin=1')
@@ -168,17 +90,48 @@ export default function Admin() {
   }, []);
 
   async function refreshWorks() {
-    try { const data = await fetch('/api/works?admin=1').then(r => r.json()); setWorks(data); } catch {}
+    try {
+      const data = await fetch('/api/works?admin=1').then(r => r.json());
+      setWorks(data);
+    } catch (e) {
+      // ignore
+    }
   }
 
   async function handleDelete(id) {
     if (!window.confirm('Supprimer définitivement cette œuvre ?')) return;
-    try { const res = await fetch(`/api/works/${id}`, { method: 'DELETE' }); if (!res.ok) throw new Error('fail'); await refreshWorks(); }
-    catch { alert('Échec de la suppression'); }
+    try {
+      const res = await fetch(`/api/works/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('fail');
+      await refreshWorks();
+    } catch (e) {
+      alert('Échec de la suppression');
+    }
   }
 
-  function handleEdit(work) {
-    setEditing(work);
+  async function handleEdit(work) {
+    const titleFr = window.prompt('Titre (fr):', work.title?.fr || '');
+    if (titleFr === null) return;
+    let prevImage = (work.image || '').toString();
+    try {
+      const u = new URL(prevImage);
+      prevImage = (u.pathname || '') + (u.search || '') + (u.hash || '');
+    } catch (e) {
+      // not an absolute URL, keep as is
+    }
+    const image = window.prompt('Image (ex: /media/masque1.jpg):', prevImage);
+    const payload = { title: { ...(work.title || {}), fr: titleFr }, image: image || '' };
+    try {
+      const res = await fetch(`/api/works/${work.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('fail');
+      await refreshWorks();
+    } catch (e) {
+      alert('Échec de la mise à jour');
+    }
   }
 
   const displayed = works.filter(w => {
@@ -272,18 +225,6 @@ export default function Admin() {
       {showAddForm && (
         <AddWorkForm
           onClose={() => setShowAddForm(false)}
-          onSuccess={() => {
-            setLoading(true);
-            fetch('/api/works?admin=1')
-              .then(res => res.json())
-              .then(data => { setWorks(data); setLoading(false); });
-          }}
-        />
-      )}
-      {!!editing && (
-        <EditWorkForm
-          work={editing}
-          onClose={() => setEditing(null)}
           onSuccess={() => {
             setLoading(true);
             fetch('/api/works?admin=1')

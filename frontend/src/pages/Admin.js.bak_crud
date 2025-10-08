@@ -1,0 +1,212 @@
+import React, { useEffect, useState } from 'react';
+import './Admin.css';
+
+
+function AddWorkForm({ onClose, onSuccess }) {
+  const [form, setForm] = useState({
+    title: { fr: '', en: '', wo: '' },
+    description: { fr: '', en: '', wo: '' },
+    image: '',
+    audio: '',
+    video: '',
+    history: '',
+    culturalContext: { fr: '', en: '', wo: '' },
+    significance: { fr: '', en: '', wo: '' }
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  function handleChange(e) {
+    const { name, value, dataset } = e.target;
+    if (dataset.lang) {
+      setForm(f => ({
+        ...f,
+        [name]: { ...f[name], [dataset.lang]: value }
+      }));
+    } else {
+      setForm(f => ({ ...f, [name]: value }));
+    }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('http://localhost:4000/api/works', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      if (!res.ok) throw new Error('Erreur lors de l\'ajout');
+      setLoading(false);
+      onSuccess();
+      onClose();
+    } catch (err) {
+      setError('Erreur lors de l\'ajout');
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="modal-backdrop">
+      <form className="add-work-form" onSubmit={handleSubmit}>
+        <h2>Ajouter une œuvre</h2>
+        <label>Titre FR <input name="title" data-lang="fr" value={form.title.fr} onChange={handleChange} required /></label>
+        <label>Titre EN <input name="title" data-lang="en" value={form.title.en} onChange={handleChange} /></label>
+        <label>Titre WO <input name="title" data-lang="wo" value={form.title.wo} onChange={handleChange} /></label>
+        <label>Description FR <textarea name="description" data-lang="fr" value={form.description.fr} onChange={handleChange} required /></label>
+        <label>Description EN <textarea name="description" data-lang="en" value={form.description.en} onChange={handleChange} /></label>
+        <label>Description WO <textarea name="description" data-lang="wo" value={form.description.wo} onChange={handleChange} /></label>
+        <label>Image (chemin ex: /media/masque1.jpg) <input name="image" value={form.image} onChange={handleChange} required /></label>
+        <label>Audio (chemin ex: /media/masque1_fr.mp3) <input name="audio" value={form.audio} onChange={handleChange} /></label>
+        <label>Vidéo <input name="video" value={form.video} onChange={handleChange} /></label>
+        <label>Histoire <textarea name="history" value={form.history} onChange={handleChange} /></label>
+        <label>Contexte culturel FR <input name="culturalContext" data-lang="fr" value={form.culturalContext.fr} onChange={handleChange} /></label>
+        <label>Contexte culturel EN <input name="culturalContext" data-lang="en" value={form.culturalContext.en} onChange={handleChange} /></label>
+        <label>Contexte culturel WO <input name="culturalContext" data-lang="wo" value={form.culturalContext.wo} onChange={handleChange} /></label>
+        <label>Signification FR <input name="significance" data-lang="fr" value={form.significance.fr} onChange={handleChange} /></label>
+        <label>Signification EN <input name="significance" data-lang="en" value={form.significance.en} onChange={handleChange} /></label>
+        <label>Signification WO <input name="significance" data-lang="wo" value={form.significance.wo} onChange={handleChange} /></label>
+        {error && <div className="error">{error}</div>}
+        <div style={{display: 'flex', gap: 12, marginTop: 16}}>
+          <button type="submit" className="btn-primary" disabled={loading}>{loading ? "Ajout..." : "Ajouter"}</button>
+          <button type="button" className="btn-secondary" onClick={onClose}>Annuler</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+
+export default function Admin() {
+  const [works, setWorks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [viewMode, setViewMode] = useState('list'); // 'list' ou 'card'
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/api/works')
+      .then(res => res.json())
+      .then(data => {
+        setWorks(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Erreur lors du chargement des œuvres.");
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div className="admin-page">
+      <h1>Administration des œuvres</h1>
+      <div className="admin-actions">
+        <button className="btn-primary" onClick={() => setShowAddForm(true)}>Ajouter une œuvre</button>
+        <button
+          className="btn-secondary"
+          style={{ marginLeft: 12 }}
+          onClick={() => setViewMode(viewMode === 'list' ? 'card' : 'list')}
+        >
+          {viewMode === 'list' ? 'Afficher en cartes' : 'Afficher en liste'}
+        </button>
+      </div>
+      <div className="admin-works-list">
+        {loading && <p>Chargement…</p>}
+        {error && <p className="error">{error}</p>}
+        {!loading && !error && (
+          viewMode === 'list' ? (
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Titre (fr)</th>
+                  <th>Image</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {works.map(work => (
+                  <tr key={work.id}>
+                    <td>{work.id}</td>
+                    <td>{work.title?.fr || work.title?.wo || work.title?.en || '-'}</td>
+                    <td>
+                      {work.image && (
+                        <img src={`http://localhost:4000${work.image}`} alt="" style={{height: 40, borderRadius: 6}} />
+                      )}
+                    </td>
+                    <td>
+                      <button className="btn-primary" style={{display:'none'}}>Modifier</button>
+                      <button className="btn-primary" style={{display:'none'}}>Archiver</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className="works-grid">
+              {works.map(work => (
+                <div className="card" key={work.id}>
+                  <div className="card-image-container">
+                    <img
+                      src={
+                        work.image?.startsWith('http')
+                          ? work.image
+                          : `http://localhost:4000${work.image}`
+                      }
+                      alt={work.title?.fr || work.title?.wo || work.title?.en || ''}
+                      style={{height: 140, borderRadius: 8, width: '100%', objectFit: 'cover'}}
+                    />
+                  </div>
+                  <div className="card-content">
+                    <h3>{work.title?.fr || work.title?.wo || work.title?.en || '-'}</h3>
+                    <p className="description">{work.description?.fr?.slice(0, 120) || '-'}</p>
+                    <div className="card-actions">
+                      <a href={`/work/${work.id}`} className="btn-primary" target="_blank" rel="noopener noreferrer">
+                        Voir plus
+                      </a>
+                      <div className="card-icons">
+                        <button className="icon-btn" title="Modifier">
+                          {/* Icône crayon SVG */}
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 20h9" />
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+                          </svg>
+                        </button>
+                        <button className="icon-btn" title="Archiver">
+                          {/* Icône corbeille SVG */}
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+                            <line x1="10" y1="11" x2="10" y2="17" />
+                            <line x1="14" y1="11" x2="14" y2="17" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )
+        )}
+      </div>
+      { false && (
+        <AddWorkForm
+          onClose={() => setShowAddForm(false)}
+          onSuccess={() => {
+            // Recharge la liste après ajout
+            setLoading(true);
+            fetch('http://localhost:4000/api/works')
+              .then(res => res.json())
+              .then(data => {
+                setWorks(data);
+                setLoading(false);
+              });
+          }}
+        />
+      )}
+    </div>
+  );
+}

@@ -2,8 +2,12 @@
 // Replace with real API calls later if needed
 
 const AUTH_KEY = 'musee_auth_token';
-const USERS_KEY = 'musee_users'; // array of { email, passwordHash(plain for demo) }
+const USERS_KEY = 'musee_users'; // array of { email, password, role }
 const CURRENT_EMAIL_KEY = 'musee_current_email';
+
+// Super admin seed (front-only demo)
+const SUPER_ADMIN_EMAIL = 'admin@gmail.com';
+const SUPER_ADMIN_PASSWORD = '1234';
 
 function getUsers() {
   try {
@@ -16,6 +20,15 @@ function getUsers() {
 
 function saveUsers(users) {
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+export function ensureSeedAdmin() {
+  const users = getUsers();
+  const exists = users.some(u => u.email.toLowerCase() === SUPER_ADMIN_EMAIL);
+  if (!exists) {
+    users.push({ email: SUPER_ADMIN_EMAIL, password: SUPER_ADMIN_PASSWORD, role: 'admin' });
+    saveUsers(users);
+  }
 }
 
 export function isAuthenticated() {
@@ -39,7 +52,7 @@ export async function signup(email, password) {
     e.code = 'USER_EXISTS';
     throw e;
   }
-  users.push({ email, password }); // In real app, hash password.
+  users.push({ email, password, role: 'user' }); // In real app, hash password.
   saveUsers(users);
 }
 
@@ -79,4 +92,12 @@ export function onAuthChange(cb) {
 
 export function getCurrentEmail() {
   return localStorage.getItem(CURRENT_EMAIL_KEY) || '';
+}
+
+export function isAdmin() {
+  const email = getCurrentEmail();
+  if (!email) return false;
+  const users = getUsers();
+  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  return Boolean(user && user.role === 'admin');
 }
