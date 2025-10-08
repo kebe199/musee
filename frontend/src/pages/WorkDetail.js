@@ -138,7 +138,11 @@ export default function WorkDetail({ lang }) {
             <div className="info-grid">
               <div className="info-item">
                 <strong>{translations[lang].origin}:</strong>
-                <span>{work.history}</span>
+                <span>{
+                  typeof work.history === 'string' 
+                    ? work.history 
+                    : (work.history?.[lang] || work.history?.fr || '')
+                }</span>
               </div>
               {work.culturalContext && (
                 <div className="info-item">

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import WorkDetail from './pages/WorkDetail';
 import LanguageSelector from './components/LanguageSelector';
@@ -9,11 +8,28 @@ import ScanQR from './pages/ScanQR';
 import About from './pages/About';
 import Admin from './pages/Admin';
 import ScrollToTop from './ScrollToTop';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import { isAuthenticated, logout, onAuthChange } from './auth';
+
+function RequireAuth({ children }) {
+  const location = useLocation();
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+  return children;
+}
 
 function App() {
   const [lang, setLang] = useState('fr');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [authed, setAuthed] = useState(isAuthenticated());
   const pageBg = `${process.env.PUBLIC_URL}/img/museum-page.jpg`;
+
+  useEffect(() => {
+    const off = onAuthChange(setAuthed);
+    return off;
+  }, []);
 
   return (
     <Router>
@@ -60,6 +76,15 @@ function App() {
           </div>
           <div className="desktop-only">
             <LanguageSelector lang={lang} setLang={setLang} />
+            {authed ? (
+              <button className="nav-link" onClick={() => logout()} style={{ marginLeft: 12 }}>
+                Déconnexion
+              </button>
+            ) : (
+              <Link to="/login" className="nav-link" style={{ marginLeft: 12 }}>
+                Connexion
+              </Link>
+            )}
           </div>
         </header>
 
@@ -80,6 +105,17 @@ function App() {
             <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Collection</Link>
             <Link to="/scan" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Scanner QR</Link>
             <Link to="/about" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>À propos</Link> {/* Nouveau bouton */}
+            {authed ? (
+              <button
+                className="nav-link"
+                onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                style={{ textAlign: 'left' }}
+              >
+                Déconnexion
+              </button>
+            ) : (
+              <Link to="/login" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Connexion</Link>
+            )}
           </nav>
           <div className="mobile-lang">
             <LanguageSelector lang={lang} setLang={(l) => { setLang(l); setIsMobileMenuOpen(false); }} />
@@ -87,11 +123,13 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={<Home lang={lang} />} />
+          <Route path="/" element={<RequireAuth><Home lang={lang} /></RequireAuth>} />
           <Route path="/work/:id" element={<WorkDetail lang={lang} />} />
           <Route path="/scan" element={<ScanQR />} />
           <Route path="/about" element={<About />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
         <section className="ad-section" aria-label="Publicités">
           <div className="ad-viewport">

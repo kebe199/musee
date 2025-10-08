@@ -1,0 +1,79 @@
+/* Signup page styled similar to Login */
+.signup-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  color: #111;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 24px;
+}
+
+.signup-card h1 {
+  margin: 0 0 8px 0;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 6px;
+}
+
+.form-input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #111;
+}
+
+.form-input::placeholder {
+  color: #666;
+}
+
+.btn-primary {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #ffb703;
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-inline {
+  background: rgba(176, 0, 32, 0.12);
+  border: 1px solid rgba(176, 0, 32, 0.35);
+  color: #b00020;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.signup-footer {
+  margin-top: 16px;
+}
+
+.link {
+  color: #ff6b35;
+  text-decoration: underline;
+}
