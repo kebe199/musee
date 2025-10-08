@@ -1,20 +1,30 @@
 const fs = require('fs');
 const path = require('path');
-const { Pool } = require('pg');
 
 const DATA_PATH = path.join(__dirname, '..', 'data', 'works.json');
 
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'musee',
-  password: 'Cheikh0una',
-  port: 5432,
-});
+function loadDataSafe() {
+  try {
+    const raw = fs.readFileSync(DATA_PATH, 'utf8');
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) {
+      throw new Error('Le fichier works.json ne contient pas un tableau.');
+    }
+    return parsed;
+  } catch (err) {
+    console.error('[worksController] Erreur de chargement/parsing works.json:', err.message);
+    return null;
+  }
+}
 
-function loadData() {
-  const raw = fs.readFileSync(DATA_PATH, 'utf8');
-  return JSON.parse(raw);
+function saveDataSafe(arr) {
+  try {
+    fs.writeFileSync(DATA_PATH, JSON.stringify(arr, null, 2), 'utf8');
+    return true;
+  } catch (err) {
+    console.error('[worksController] Erreur d\'écriture works.json:', err.message);
+    return false;
+  }
 }
 
 function attachFullUrls(req, work) {
@@ -28,51 +38,87 @@ function attachFullUrls(req, work) {
 }
 
 // Liste des œuvres
-exports.list = async (req, res) => {
+exports.list = (req, res) => {
+  const data = loadDataSafe();
+  if (!data) {
+    return res.status(500).json({ error: 'Données invalides (works.json)' });
+  }
   try {
-    const result = await pool.query('SELECT * FROM works ORDER BY id');
-    res.json(result.rows);
+    const includeAll = req.query && req.query.admin === '1';
+    const filtered = includeAll ? data : data.filter(w => !w.archived);
+    const mapped = filtered.map(w => attachFullUrls(req, w));
+    res.json(mapped);
   } catch (err) {
-    res.status(500).json({ error: 'Erreur serveur' });
+    console.error('[worksController] Erreur lors de la préparation des données:', err.message);
+    res.status(500).json({ error: 'Préparation des données échouée' });
   }
 };
 
-// Détail d'une œuvre
-exports.getById = async (req, res) => {
+// Détail par ID
+exports.getById = (req, res) => {
+  const id = req.params.id;
+  const data = loadDataSafe();
+  if (!data) {
+    return res.status(500).json({ error: 'Données invalides (works.json)' });
+  }
   try {
-    const id = req.params.id;
-    const result = await pool.query('SELECT * FROM works WHERE id = $1', [id]);
-    if (result.rows.length === 0) return res.status(404).json({ error: 'Oeuvre introuvable' });
-    res.json(result.rows[0]);
+    const found = data.find(w => String(w.id) === String(id));
+    if (!found) return res.status(404).json({ error: 'Oeuvre introuvable' });
+    res.json(attachFullUrls(req, found));
   } catch (err) {
-    res.status(500).json({ error: 'Erreur serveur' });
+    console.error('[worksController] Erreur lors de la récupération de l\'œuvre:', err.message);
+    res.status(500).json({ error: 'Erreur interne' });
   }
 };
 
-// Ajout d'une œuvre
-exports.create = async (req, res) => {
+// Création d'une œuvre
+exports.create = (req, res) => {
+  const data = loadDataSafe();
+  if (!data) return res.status(500).json({ error: 'Données invalides (works.json)' });
   try {
-    const {
-      title, description, image, audio, video, history, culturalContext, significance
-    } = req.body;
-    const result = await pool.query(
-      `INSERT INTO works (title, description, image, audio, video, history, culturalcontext, significance)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-       RETURNING *`,
-      [
-        title,
-        description,
-        image,
-        audio,
-        video,
-        history,
-        culturalContext,
-        significance
-      ]
-    );
-    res.status(201).json(result.rows[0]);
+    const body = req.body || {};
+    const nextId = (data.reduce((m, w) => Math.max(m, Number(w.id) || 0), 0) || 0) + 1;
+    const newWork = { id: nextId, archived: false, ...body };
+    data.push(newWork);
+    if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
+    res.status(201).json(attachFullUrls(req, newWork));
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Erreur serveur lors de l\'ajout' });
+    console.error('[worksController] Erreur création:', err.message);
+    res.status(500).json({ error: 'Erreur serveur lors de la création' });
+  }
+};
+
+// Mise à jour d'une œuvre
+exports.update = (req, res) => {
+  const id = req.params.id;
+  const data = loadDataSafe();
+  if (!data) return res.status(500).json({ error: 'Données invalides (works.json)' });
+  try {
+    const idx = data.findIndex(w => String(w.id) === String(id));
+    if (idx === -1) return res.status(404).json({ error: 'Oeuvre introuvable' });
+    const updated = { ...data[idx], ...req.body };
+    data[idx] = updated;
+    if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
+    res.json(attachFullUrls(req, updated));
+  } catch (err) {
+    console.error('[worksController] Erreur mise à jour:', err.message);
+    res.status(500).json({ error: 'Erreur serveur lors de la mise à jour' });
+  }
+};
+
+// Archivage d'une œuvre
+exports.archive = (req, res) => {
+  const id = req.params.id;
+  const data = loadDataSafe();
+  if (!data) return res.status(500).json({ error: 'Données invalides (works.json)' });
+  try {
+    const idx = data.findIndex(w => String(w.id) === String(id));
+    if (idx === -1) return res.status(404).json({ error: 'Oeuvre introuvable' });
+    data[idx].archived = true;
+    if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('[worksController] Erreur archivage:', err.message);
+    res.status(500).json({ error: 'Erreur serveur lors de l\'archivage' });
   }
 };

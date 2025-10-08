@@ -14,7 +14,11 @@
     "image": "/media/masque1.jpg",
     "audio": "/media/masque1_fr.mp3",
     "video": "",
-    "history": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
+    "history": {
+      "fr": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
+      "en": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
+      "wo": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible."
+    },
     "culturalContext": {
       "fr": "Les masques Dan sont des objets sacrés qui ne peuvent être vus que par les initiés. Ils représentent les esprits de la nature et servent de médiateurs entre les vivants et les ancêtres.",
       "en": "Dan masks are sacred objects that can only be seen by initiates. They represent nature spirits and serve as mediators between the living and the ancestors.",
@@ -41,7 +45,11 @@
     "image": "/media/statue1.jpg",
     "audio": "/media/statue1_fr.mp3",
     "video": "",
-    "history": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
+    "history": {
+      "fr": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
+      "en": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
+      "wo": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération."
+    },
     "culturalContext": {
       "fr": "Dans la culture dogon, la fertilité est considérée comme un don des ancêtres. Ces statuettes sont souvent placées dans les chambres nuptiales pour assurer la prospérité du couple.",
       "en": "In Dogon culture, fertility is considered a gift from ancestors. These statuettes are often placed in bridal chambers to ensure the couple's prosperity.",
@@ -68,7 +76,11 @@
     "image": "/media/tissu1.jpg",
     "audio": "/media/tissu1_fr.mp3",
     "video": "",
-    "history": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
+    "history": {
+      "fr": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
+      "en": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
+      "wo": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie."
+    },
     "culturalContext": {
       "fr": "Le tissage est un art sacré chez les Akan. Chaque motif a une signification profonde et raconte l'histoire de la communauté. Les couleurs et les motifs varient selon le statut social.",
       "en": "Weaving is a sacred art among the Akan. Each pattern has deep meaning and tells the community's story. Colors and patterns vary according to social status.",
@@ -95,7 +107,11 @@
     "image": "/media/yoruba1.jpg",
     "audio": "/media/yoruba1_fr.mp3",
     "video": "",
-    "history": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
+    "history": {
+      "fr": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
+      "en": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
+      "wo": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel."
+    },
     "culturalContext": {
       "fr": "Dans la religion Yoruba, chaque divinité a des attributs spécifiques et des pouvoirs particuliers. Ces sculptures servent de réceptacles pour l'énergie divine et facilitent la communication avec les esprits.",
       "en": "In Yoruba religion, each deity has specific attributes and particular powers. These sculptures serve as receptacles for divine energy and facilitate communication with spirits.",
@@ -122,7 +138,11 @@
     "image": "/media/touareg1.jpg",
     "audio": "/media/touareg1_fr.mp3",
     "video": "",
-    "history": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
+    "history": {
+      "fr": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
+      "en": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
+      "wo": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits."
+    },
     "culturalContext": {
       "fr": "Chez les Touaregs, l'argent est plus précieux que l'or car il est associé à la lune et à la pureté. Les bijoux sont transmis de mère en fille et racontent l'histoire familiale.",
       "en": "Among the Tuareg, silver is more precious than gold because it is associated with the moon and purity. Jewelry is passed from mother to daughter and tells the family story.",
@@ -149,7 +169,11 @@
     "image": "/media/benin1.jpg",
     "audio": "/media/masque1_fr.mp3",
     "video": "",
-    "history": "Origine : Royaume du Bénin, XIIe–XIXe siècles. Ces bronzes étaient utilisés pour célébrer les ancêtres royaux et commémorer les événements historiques de la cour.",
+    "history": {
+      "fr": "Origine : Royaume du Bénin, XIIe–XIXe siècles. Ces bronzes étaient utilisés pour célébrer les ancêtres royaux et commémorer les événements historiques de la cour.",
+      "en": "Origine : Royaume du Bénin, XIIe–XIXe siècles. Ces bronzes étaient utilisés pour célébrer les ancêtres royaux et commémorer les événements historiques de la cour.",
+      "wo": "Origine : Royaume du Bénin, XIIe–XIXe siècles. Ces bronzes étaient utilisés pour célébrer les ancêtres royaux et commémorer les événements historiques de la cour."
+    },
     "culturalContext": {
       "fr": "Les Bronzes du Bénin servaient de supports mémoriels et symboliques dans la cour royale. Ils racontent l’organisation politique, les lignées, et les rituels du royaume.",
       "en": "The Benin Bronzes served as memorial and symbolic media in the royal court, depicting political organization, lineage, and rituals.",

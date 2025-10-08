@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Navigate, useLocation, Link } from 'react-router-dom';
-import { login, isAuthenticated } from '../auth';
+import { login, isAuthenticated, isAdmin } from '../auth';
 import './Login.css';
 
 export default function Login() {
@@ -20,7 +20,7 @@ export default function Login() {
   }, [location]);
 
   if (isAuthenticated()) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={isAdmin() ? "/admin" : "/"} replace />;
   }
 
   const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(email, password);
-      navigate('/', { replace: true });
+      navigate(isAdmin() ? '/admin' : '/', { replace: true });
     } catch (err) {
       setError(err.message || 'Échec de connexion');
     } finally {

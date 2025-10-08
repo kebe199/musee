@@ -6,7 +6,14 @@ const controller = require('../controllers/worksController');
 router.get('/', controller.list);
 // GET /api/works/:id
 router.get('/:id', controller.getById);
-// Ajout d'une œuvre
+
+// POST /api/works (create)
 router.post('/', controller.create);
+
+// PUT /api/works/:id (update)
+router.put('/:id', controller.update);
+
+// PATCH /api/works/:id/archive (archive)
+router.patch('/:id/archive', controller.archive);
 
 module.exports = router;
