@@ -29,11 +29,12 @@ function saveDataSafe(arr) {
 
 function attachFullUrls(req, work) {
   const host = `${req.protocol}://${req.get('host')}`;
+  const isAbs = (u) => typeof u === 'string' && /^(https?:)?\/\//i.test(u);
   return {
     ...work,
-    image: work.image ? `${host}${work.image}` : '',
-    audio: work.audio ? `${host}${work.audio}` : '',
-    video: work.video ? `${host}${work.video}` : ''
+    image: work.image ? (isAbs(work.image) ? work.image : `${host}${work.image}`) : '',
+    audio: work.audio ? (isAbs(work.audio) ? work.audio : `${host}${work.audio}`) : '',
+    video: work.video ? (isAbs(work.video) ? work.video : `${host}${work.video}`) : ''
   };
 }
 
@@ -44,13 +45,29 @@ exports.list = (req, res) => {
     return res.status(500).json({ error: 'Données invalides (works.json)' });
   }
   try {
-    const includeAll = req.query && req.query.admin === '1';
-    const filtered = includeAll ? data : data.filter(w => !w.archived);
-    const mapped = filtered.map(w => attachFullUrls(req, w));
+    // Retourner toutes les œuvres; l'archivage est supprimé
+    const mapped = data.map(w => attachFullUrls(req, w));
     res.json(mapped);
   } catch (err) {
     console.error('[worksController] Erreur lors de la préparation des données:', err.message);
     res.status(500).json({ error: 'Préparation des données échouée' });
+  }
+};
+
+// Suppression d'une œuvre
+exports.remove = (req, res) => {
+  const id = req.params.id;
+  const data = loadDataSafe();
+  if (!data) return res.status(500).json({ error: 'Données invalides (works.json)' });
+  try {
+    const idx = data.findIndex(w => String(w.id) === String(id));
+    if (idx === -1) return res.status(404).json({ error: 'Oeuvre introuvable' });
+    data.splice(idx, 1);
+    if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('[worksController] Erreur suppression:', err.message);
+    res.status(500).json({ error: 'Erreur serveur lors de la suppression' });
   }
 };
 
@@ -78,7 +95,7 @@ exports.create = (req, res) => {
   try {
     const body = req.body || {};
     const nextId = (data.reduce((m, w) => Math.max(m, Number(w.id) || 0), 0) || 0) + 1;
-    const newWork = { id: nextId, archived: false, ...body };
+    const newWork = { id: nextId, archived: false, likedBy: [], likes: 0, ...body };
     data.push(newWork);
     if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
     res.status(201).json(attachFullUrls(req, newWork));
@@ -96,7 +113,12 @@ exports.update = (req, res) => {
   try {
     const idx = data.findIndex(w => String(w.id) === String(id));
     if (idx === -1) return res.status(404).json({ error: 'Oeuvre introuvable' });
-    const updated = { ...data[idx], ...req.body };
+    const prev = data[idx];
+    const updated = { ...prev, ...req.body };
+    // keep data consistent: likes should reflect likedBy length if present
+    if (Array.isArray(updated.likedBy)) {
+      updated.likes = updated.likedBy.length;
+    }
     data[idx] = updated;
     if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
     res.json(attachFullUrls(req, updated));
@@ -106,19 +128,39 @@ exports.update = (req, res) => {
   }
 };
 
-// Archivage d'une œuvre
-exports.archive = (req, res) => {
+
+
+// Toggle like for a user (like if not liked, unlike if already liked)
+exports.like = (req, res) => {
   const id = req.params.id;
   const data = loadDataSafe();
   if (!data) return res.status(500).json({ error: 'Données invalides (works.json)' });
   try {
     const idx = data.findIndex(w => String(w.id) === String(id));
     if (idx === -1) return res.status(404).json({ error: 'Oeuvre introuvable' });
-    data[idx].archived = true;
+    const current = data[idx];
+    const userRaw = (req.body && (req.body.user || req.body.email)) || '';
+    const user = String(userRaw).toLowerCase().trim();
+    if (!user) {
+      return res.status(400).json({ error: 'Utilisateur requis pour liker.' });
+    }
+    const likedBy = Array.isArray(current.likedBy) ? [...current.likedBy] : [];
+    const i = likedBy.findIndex(u => String(u).toLowerCase() === user);
+    let liked;
+    if (i >= 0) {
+      // already liked -> unlike
+      likedBy.splice(i, 1);
+      liked = false;
+    } else {
+      likedBy.push(user);
+      liked = true;
+    }
+    const newLikes = likedBy.length;
+    data[idx] = { ...current, likedBy, likes: newLikes };
     if (!saveDataSafe(data)) return res.status(500).json({ error: 'Écriture des données échouée' });
-    res.json({ success: true });
+    return res.json({ id: current.id, likes: newLikes, liked });
   } catch (err) {
-    console.error('[worksController] Erreur archivage:', err.message);
-    res.status(500).json({ error: 'Erreur serveur lors de l\'archivage' });
+    console.error('[worksController] Erreur like:', err.message);
+    return res.status(500).json({ error: 'Erreur serveur lors du like' });
   }
 };

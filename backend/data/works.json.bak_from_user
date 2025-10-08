@@ -11,8 +11,8 @@
       "en": "Ceremonial mask from the Dan culture (Ivory Coast), used during initiation dances to symbolize protection and wisdom. This mask represents the protective spirit of the community and is worn only by initiates during sacred ceremonies.",
       "wo": "Masquu bu jëm ci cosaanu Dan, di fane woon ci njàngat yu jëm kanam ngir jëmmal njub ak xam-xam. Masquu bii mooy jëmmal ruwaay bu ngor ci jamono bi, ñu koy def ci njàngat yu rafet."
     },
-    "image": "/media/masque1.jpg",
-    "audio": "/media/masque1_fr.mp3",
+    "image": "http://localhost:4000/media/masque1.jpg",
+    "audio": "http://localhost:4000/media/masque1_fr.mp3",
     "video": "",
     "history": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
     "culturalContext": {
@@ -41,11 +41,7 @@
       "wo": "Sutura bu jigéen ci Mali, di simbolu ndox muus ak barkeel. Ñu koy def ci jamono ngir njaboot, sutura bii mooy jëmmal xel mu am ci ndox muus ak barkeelu ñi faatu ci njabootu bees."
     },
     "image": "/media/statue1.jpg",
-    "audio":  {
-    "fr": "/media/Statuette de fertilité.mp3",
-    "en": "/media/Fertility Statuette.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": "/media/statue1_fr.mp3",
     "video": "",
     "history": {
       "fr": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
@@ -78,11 +74,7 @@
       "wo": "Weer bu ñu dajale ak loxo ci àddina Akan (Gana). Benn motif mooy xamal kàddu gu am solo ci jamono bi. Weer gi mooy def rekk buur yi ak ñi ci njabootu buur bi ci jamono yu am solo."
     },
     "image": "/media/tissu1.jpg",
-    "audio": {
-    "fr": "/media/tissu royal akan.mp3",
-    "en": "/media/Akan royal cloth.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": "/media/tissu1_fr.mp3",
     "video": "",
     "history": {
       "fr": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
@@ -113,11 +105,7 @@
       "wo": "Sutura ci kër bu jëmmal yoonu Yoruba (Nigeria). Jëmmiinu rafet bii di fane woon ci njàngat yu rafet ngir yiwu orisha yi ak ngir jëkkal ci yoonu rafet."
     },
     "image": "/media/yoruba1.jpg",
-    "audio":  {
-    "fr": "/media/Sculpture yoruba.mp3",
-    "en": "/media/yoruba sculpture.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": "/media/yoruba1_fr.mp3",
     "video": "",
     "history": {
       "fr": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
@@ -152,11 +140,7 @@
       "wo": "Yëngu cosaanu ci loxo ci Tuareg (Sahara). Yëngu yii di fane woon ci jigéen ak góor ngir jëmmal boppu jamono ak ngoru rafet. Benn motif am na solo."
     },
     "image": "/media/touareg1.jpg",
-    "audio":  {
-    "fr": "/media/bijoux touareg.mp3",
-    "en": "/media/Touareg jewerly.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": "/media/touareg1_fr.mp3",
     "video": "",
     "history": {
       "fr": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
@@ -187,11 +171,7 @@
       "wo": "Liggéeyu ndox aaru beneŋu ci teegalub Bénin (Nigeria). Yenn yi di wone mën mën ak taariix bu yàgg ci kër buur yi ak njàngat."
     },
     "image": "/media/benin1.jpg",
-    "audio":  {
-    "fr": "/media/.mp3",
-    "en": "/media/.mp3",
-    "wo": "/media/.mp3"
-  },
+    "audio": "/media/masque1_fr.mp3",
     "video": "",
     "history": {
       "fr": "Origine : Royaume du Bénin, XIIe–XIXe siècles. Ces bronzes étaient utilisés pour célébrer les ancêtres royaux et commémorer les événements historiques de la cour.",
