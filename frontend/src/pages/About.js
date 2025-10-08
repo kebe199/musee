@@ -17,7 +17,7 @@ export default function About() {
       <h2>Localisation</h2>
       <p>
         Place Soweto, Dakar, Sénégal<br/>
-        <a href="https://goo.gl/maps/9k3Q6k3Q6k3Q6k3Q6" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a>
+        <a href="https://maps.app.goo.gl/Ehre3a6QdV4FH5MV9?g_st=ipc" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a>
       </p>
       <h2>Horaires d’ouverture</h2>
       <ul>
