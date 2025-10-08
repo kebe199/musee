@@ -4,7 +4,7 @@
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   padding: 40px 30px;
   margin: 40px auto;
-  max-width: 800px;
+
   border: 1px solid #e9ecef;
   animation: fadeInUp 0.8s;
 }
@@ -36,6 +36,23 @@
   background: #f7931e;
 }
 
+.btn-secondary {
+  background: #f8f9fa;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-left: 8px;
+}
+.btn-secondary:hover {
+  background: #ff6b35;
+  color: #fff;
+}
+
 .admin-works-list {
   margin-top: 20px;
 }
@@ -64,6 +81,110 @@
 
 .admin-table tr:last-child td {
   border-bottom: none;
+}
+
+.card-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.card-icons .icon-btn {
+  font-size: 1.2rem;
+  color: #ff6b35;
+  background: none;
+  border: none;
+  margin-left: 6px;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.15s;
+}
+.card-icons .icon-btn:hover {
+  color: #f7931e;
+  transform: scale(1.15);
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  outline: none;
+  transition: transform 0.15s, filter 0.2s, background 0.2s;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+}
+
+.icon-btn svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.icon-btn:hover {
+  background: rgba(255,107,53,0.08);
+  transform: scale(1.13);
+  filter: drop-shadow(0 2px 8px rgba(255,107,53,0.12));
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+.add-work-form {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.add-work-form h2 {
+  margin-bottom: 10px;
+  color: #ff6b35;
+}
+.add-work-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+.add-work-form input,
+.add-work-form textarea {
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 7px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+.add-work-form textarea {
+  min-height: 48px;
+  resize: vertical;
+}
+.add-work-form .error {
+  color: #b00;
+  background: #fff0f0;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 8px;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -107,5 +228,11 @@
 
   .admin-table img {
     height: 32px;
+  }
+
+  .add-work-form {
+    padding: 18px 6vw;
+    max-width: 98vw;
+    max-height: 96vh;
   }
 }
