@@ -41,7 +41,7 @@ export default function Home({ lang }) {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:4000/api/works')
+    axios.get('/api/works')
       .then(res => {
         setWorks(res.data);
         setFilteredWorks(res.data);

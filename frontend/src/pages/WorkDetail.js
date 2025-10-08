@@ -54,7 +54,7 @@ export default function WorkDetail({ lang }) {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:4000/api/works/${id}`)
+    axios.get(`/api/works/${id}`)
       .then(res => {
         setWork(res.data);
         setError(null);

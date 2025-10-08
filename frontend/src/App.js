@@ -10,11 +10,19 @@ import Admin from './pages/Admin';
 import ScrollToTop from './ScrollToTop';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { isAuthenticated, logout, onAuthChange } from './auth';
+import { isAuthenticated, logout, onAuthChange, isAdmin, ensureSeedAdmin } from './auth';
 
 function RequireAuth({ children }) {
   const location = useLocation();
   if (!isAuthenticated()) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+  return children;
+}
+
+function RequireAdmin({ children }) {
+  const location = useLocation();
+  if (!isAuthenticated() || !isAdmin()) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
   return children;
@@ -27,6 +35,8 @@ function App() {
   const pageBg = `${process.env.PUBLIC_URL}/img/museum-page.jpg`;
 
   useEffect(() => {
+    // Ensure super admin exists in localStorage (front-only seed)
+    ensureSeedAdmin();
     const off = onAuthChange(setAuthed);
     return off;
   }, []);
@@ -127,7 +137,7 @@ function App() {
           <Route path="/work/:id" element={<WorkDetail lang={lang} />} />
           <Route path="/scan" element={<ScanQR />} />
           <Route path="/about" element={<About />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
@@ -156,7 +166,9 @@ function App() {
           <span> | </span>
           <Link to="/about" className="footer-link">À propos</Link>
           <span> | </span>
-          <Link to="/admin" className="footer-link" style={{marginLeft: 16, opacity: 0.7}}>Admin</Link>
+          {isAdmin() && (
+            <Link to="/admin" className="footer-link" style={{marginLeft: 16, opacity: 0.7}}>Admin</Link>
+          )}
         </footer>
         </div>
       </div>
