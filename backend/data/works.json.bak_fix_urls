@@ -11,8 +11,8 @@
       "en": "Ceremonial mask from the Dan culture (Ivory Coast), used during initiation dances to symbolize protection and wisdom. This mask represents the protective spirit of the community and is worn only by initiates during sacred ceremonies.",
       "wo": "Masquu bu jëm ci cosaanu Dan, di fane woon ci njàngat yu jëm kanam ngir jëmmal njub ak xam-xam. Masquu bii mooy jëmmal ruwaay bu ngor ci jamono bi, ñu koy def ci njàngat yu rafet."
     },
-    "image": "http://localhost:4000/media/masque1.jpg",
-    "audio": "http://localhost:4000/media/masque1_fr.mp3",
+    "image": "http://localhost:4000http://localhost:4000/media/masque1.jpg",
+    "audio": "http://localhost:4000http://localhost:4000/media/masque1_fr.mp3",
     "video": "",
     "history": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
     "culturalContext": {

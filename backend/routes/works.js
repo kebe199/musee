@@ -13,7 +13,12 @@ router.post('/', controller.create);
 // PUT /api/works/:id (update)
 router.put('/:id', controller.update);
 
-// PATCH /api/works/:id/archive (archive)
-router.patch('/:id/archive', controller.archive);
+
+
+// POST /api/works/:id/like (increment likes)
+router.post('/:id/like', controller.like);
+
+// DELETE /api/works/:id (remove)
+router.delete('/:id', controller.remove);
 
 module.exports = router;

@@ -225,11 +225,9 @@
     display: block;
     width: 100%;
   }
-
   .admin-table img {
     height: 32px;
   }
-
   .add-work-form {
     padding: 18px 6vw;
     max-width: 98vw;
