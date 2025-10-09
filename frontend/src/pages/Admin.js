@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Admin.css';
+import { getWorks, createWork, updateWork, deleteWork } from '../api';
 
 function AddWorkForm({ onClose, onSuccess }) {
   const [form, setForm] = useState({
@@ -29,12 +30,7 @@ function AddWorkForm({ onClose, onSuccess }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/works', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      });
-      if (!res.ok) throw new Error("Erreur lors de l'ajout");
+      await createWork(form);
       setLoading(false);
       onSuccess();
       onClose();
@@ -54,8 +50,8 @@ function AddWorkForm({ onClose, onSuccess }) {
         <label>Description FR <textarea name="description" data-lang="fr" value={form.description.fr} onChange={handleChange} required /></label>
         <label>Description EN <textarea name="description" data-lang="en" value={form.description.en} onChange={handleChange} /></label>
         <label>Description WO <textarea name="description" data-lang="wo" value={form.description.wo} onChange={handleChange} /></label>
-        <label>Image (chemin ex: /media/masque1.jpg) <input name="image" value={form.image} onChange={handleChange} required /></label>
-        <label>Audio (chemin ex: /media/masque1_fr.mp3) <input name="audio" value={form.audio} onChange={handleChange} /></label>
+        <label>Image <input name="image" value={form.image} onChange={handleChange} required /></label>
+        <label>Audio <input name="audio" value={form.audio} onChange={handleChange} /></label>
         <label>Vidéo <input name="video" value={form.video} onChange={handleChange} /></label>
         <label>Histoire <textarea name="history" value={form.history} onChange={handleChange} /></label>
         <label>Contexte culturel FR <input name="culturalContext" data-lang="fr" value={form.culturalContext.fr} onChange={handleChange} /></label>
@@ -106,17 +102,12 @@ function EditWorkForm({ work, onClose, onSuccess }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`/api/works/${work.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      });
-      if (!res.ok) throw new Error("Erreur lors de la mise � jour");
+      await updateWork(work.id, form);
       setLoading(false);
       onSuccess();
       onClose();
     } catch (err) {
-      setError("Erreur lors de la mise � jour");
+      setError("Erreur lors de la mise à jour");
       setLoading(false);
     }
   }
@@ -160,21 +151,30 @@ export default function Admin() {
   const [query, setQuery] = useState('');
   const [editing, setEditing] = useState(null);
 
-  useEffect(() => {
-    fetch('/api/works?admin=1')
-      .then(res => res.json())
-      .then(data => { setWorks(data); setLoading(false); })
-      .catch(() => { setError("Erreur lors du chargement des �uvres."); setLoading(false); });
-  }, []);
-
-  async function refreshWorks() {
-    try { const data = await fetch('/api/works?admin=1').then(r => r.json()); setWorks(data); } catch {}
+  async function fetchWorks() {
+    setLoading(true);
+    try {
+      const res = await getWorks();
+      setWorks(res.data);
+    } catch (err) {
+      setError("Erreur lors du chargement des œuvres.");
+    } finally {
+      setLoading(false);
+    }
   }
 
+  useEffect(() => {
+    fetchWorks();
+  }, []);
+
   async function handleDelete(id) {
-    if (!window.confirm('Supprimer d�finitivement cette �uvre ?')) return;
-    try { const res = await fetch(`/api/works/${id}`, { method: 'DELETE' }); if (!res.ok) throw new Error('fail'); await refreshWorks(); }
-    catch { alert('�chec de la suppression'); }
+    if (!window.confirm('Supprimer définitivement cette œuvre ?')) return;
+    try {
+      await deleteWork(id);
+      fetchWorks();
+    } catch {
+      alert('Échec de la suppression');
+    }
   }
 
   function handleEdit(work) {
@@ -219,9 +219,7 @@ export default function Admin() {
                     <td>{work.id}</td>
                     <td>{work.title?.fr || work.title?.wo || work.title?.en || '-'}</td>
                     <td>
-                      {work.image && (
-                        <img src={work.image} alt="" style={{height: 40, borderRadius: 6}} />
-                      )}
+                      {work.image && <img src={work.image} alt="" style={{height: 40, borderRadius: 6}} />}
                     </td>
                     <td>
                       <button className="btn-primary" style={{marginRight: 8}} onClick={() => handleEdit(work)}>Modifier</button>
@@ -236,11 +234,7 @@ export default function Admin() {
               {displayed.map(work => (
                 <div className="card" key={work.id}>
                   <div className="card-image-container">
-                    <img
-                      src={work.image}
-                      alt={work.title?.fr || work.title?.wo || work.title?.en || ''}
-                      style={{height: 140, borderRadius: 8, width: '100%', objectFit: 'cover'}}
-                    />
+                    <img src={work.image} alt={work.title?.fr || work.title?.wo || work.title?.en || ''} style={{height: 140, borderRadius: 8, width: '100%', objectFit: 'cover'}} />
                   </div>
                   <div className="card-content">
                     <h3>{work.title?.fr || work.title?.wo || work.title?.en || '-'}</h3>
@@ -269,29 +263,8 @@ export default function Admin() {
           )
         )}
       </div>
-      {showAddForm && (
-        <AddWorkForm
-          onClose={() => setShowAddForm(false)}
-          onSuccess={() => {
-            setLoading(true);
-            fetch('/api/works?admin=1')
-              .then(res => res.json())
-              .then(data => { setWorks(data); setLoading(false); });
-          }}
-        />
-      )}
-      {!!editing && (
-        <EditWorkForm
-          work={editing}
-          onClose={() => setEditing(null)}
-          onSuccess={() => {
-            setLoading(true);
-            fetch('/api/works?admin=1')
-              .then(res => res.json())
-              .then(data => { setWorks(data); setLoading(false); });
-          }}
-        />
-      )}
+      {showAddForm && <AddWorkForm onClose={() => setShowAddForm(false)} onSuccess={fetchWorks} />}
+      {editing && <EditWorkForm work={editing} onClose={() => setEditing(null)} onSuccess={fetchWorks} />}
     </div>
   );
 }

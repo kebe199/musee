@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { getCurrentEmail, isAuthenticated } from '../auth';
-
+import { getWork, likeWork } from '../api';
 const translations = {
   fr: {
     back: "← Retour à la collection",
@@ -57,6 +57,16 @@ export default function WorkDetail({ lang }) {
   const [liked, setLiked] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
 
+  useEffect(() => {
+    getWork(id).then(res => setWork(res.data))
+               .catch(err => console.error(err));
+  }, [id]);
+  
+  const handleLike = () => {
+    likeWork(id, email).then(() => {
+      // mettre à jour l'état local si nécessaire
+    }).catch(err => console.error(err));
+  }
   useEffect(() => {
     setLoading(true);
     axios.get(`/api/works/${id}`)

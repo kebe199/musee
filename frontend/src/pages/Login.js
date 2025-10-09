@@ -3,6 +3,9 @@ import { useNavigate, Navigate, useLocation, Link } from 'react-router-dom';
 import { login, isAuthenticated, isAdmin } from '../auth';
 import './Login.css';
 
+// Cle pour marquer la premiere visite de l'app (pour vider les champs)
+const FIRST_VISIT_KEY = 'musee_first_visit_done';
+
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,6 +14,16 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [justSignedUp, setJustSignedUp] = useState(false);
+
+  // Si c'est la premiere visite, on s'assure que les champs sont vides
+  useEffect(() => {
+    const firstTime = !localStorage.getItem(FIRST_VISIT_KEY);
+    if (firstTime) {
+      setEmail('');
+      setPassword('');
+      localStorage.setItem(FIRST_VISIT_KEY, '1');
+    }
+  }, []);
 
   useEffect(() => {
     if (location && location.state) {
@@ -47,7 +60,7 @@ export default function Login() {
             Compte créé avec succès. Vous pouvez maintenant vous connecter.
           </div>
         )}
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="login-form" autoComplete="off">
           <label className="form-label">
             Email
             <input
@@ -56,6 +69,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               className="form-input"
               placeholder="vous@exemple.com"
+              autoComplete="off"
               required
             />
           </label>
@@ -67,6 +81,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="form-input"
               placeholder="••••"
+              autoComplete="off"
               required
               minLength={4}
             />

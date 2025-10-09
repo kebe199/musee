@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import WorkDetail from './pages/WorkDetail';
 import LanguageSelector from './components/LanguageSelector';
@@ -108,7 +108,7 @@ function App() {
               <div className="header-controls desktop-only">
                 <LanguageSelector lang={lang} setLang={setLang} />
                 {authed ? (
-                  <button className="nav-link" onClick={() => logout()}>
+                  <button className="nav-link" onClick={() => { logout(); window.location.replace('/login'); }}>
                     Déconnexion
                   </button>
                 ) : (
@@ -141,7 +141,7 @@ function App() {
             {authed ? (
               <button
                 className="nav-link"
-                onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                onClick={() => { logout(); setIsMobileMenuOpen(false); window.location.replace('/login'); }}
                 style={{ textAlign: 'left' }}
               >
                 Déconnexion

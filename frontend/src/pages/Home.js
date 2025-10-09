@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import WorkCard from '../components/WorkCard';
+import { getWorks } from '../api';
+import { getWorks } from '../api';
+
 
 const translations = {
   fr: {
@@ -39,10 +42,16 @@ export default function Home({ lang }) {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [topLiked, setTopLiked] = useState(null);
+  useEffect(() => {
+    getWorks().then(res => setWorks(res.data))
+             .catch(err => console.error(err));
+  }, []);
 
   useEffect(() => {
     setLoading(true);
-    axios.get('/api/works')
+  
+getWorks().then(res => setWorks(res.data))
+
       .then(res => {
         setWorks(res.data);
         setFilteredWorks(res.data);
