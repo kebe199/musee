@@ -206,9 +206,10 @@
     {
         "id":  6,
         "title":  {
-                       "fr": "Ensemble d'objets en bronze provenant du royaume du Bénin (actuel Nigeria). Ces œuvres témoignent d’un savoir-faire métallurgique exceptionnel et d’une histoire riche, transmise à travers les cours royales et les rituels.",
-      "en": "A collection of bronze objects from the Kingdom of Benin (present-day Nigeria). These works showcase exceptional metalworking skills and a rich history passed through royal courts and rituals.",
-      "wo": "Ay mbir yuñ defaree përëm yu bawoo ci Royaume bu Benin (Nigeria bu leegi). Liggéey yooyu dañuy wane xam-xam bu amul fenn ci metalurgie ak taarix bu am solo, ñu ko joxe ci këri buur yi ak ci seeni xew-xew."
+                      "fr": "Bronzes du Bénin",
+      "en": "Benin Bronzes",
+      "wo": "Përëm Benin"
+
 
                   },
         "description":  {
