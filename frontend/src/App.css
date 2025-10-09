@@ -1486,3 +1486,35 @@ footer {
     height: 18px !important;
   }
 }
+/* ===== Card layout overrides (alignment + no overflow) ===== */
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Keep descriptions compact and consistent height */
+.card .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* up to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.6em * 3);
+}
+
+/* Pin actions row at the bottom of the card content */
+.card-actions {
+  margin-top: auto;
+}
+/* ===== End Card layout overrides ===== */

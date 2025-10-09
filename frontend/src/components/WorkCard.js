@@ -26,11 +26,20 @@ export default function WorkCard({ work, lang }) {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
 
+  const pickMediaUrl = (m) => {
+    if (!m) return '';
+    if (typeof m === 'string') return m;
+    if (typeof m === 'object') return m[lang] || m.fr || m.en || m.wo || '';
+    return '';
+  };
+  const audioUrl = pickMediaUrl(work.audio);
+  const hasAudio = !!audioUrl;
+
   return (
     <div className="card">
-      <div className="card-image-container">
+      <div className="card-image-container" style={{ position: 'relative' }}>
         <img src={work.image} alt={work.title[lang]} />
-        {work.audio && (
+        {hasAudio && (
           <div className="audio-indicator">
             {translations[lang].audioAvailable}
           </div>
