@@ -2,12 +2,10 @@ const { Pool } = require('pg');
 const fs = require('fs');
 
 const pool = new Pool({
-  user: 'musee_user',
-  host: 'localhost',
-  database: 'musee',
-  password: 'musee2025',
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // indispensable pour Neon
 });
+
 
 // Transforme n'importe quel objet JSON complexe en string JSON
 function toJSONSafe(value) {
