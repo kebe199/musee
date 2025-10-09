@@ -1,7 +1,7 @@
 // require('dotenv').config(); 
 
 
-const DATABASE_URL = 'postgresql://neondb_owner:npg_KQHZ2uwcl0Xo@ep-calm-heart-ad8iass8-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+const DATABASE_URL = 'postgresql://neondb_owner:npg_qfhAlDacUM87@ep-solitary-lake-adz1gqim-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
 const { Pool } = require('pg');
 const fs = require('fs');
 
