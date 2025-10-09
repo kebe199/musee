@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 const fs = require('fs');
+require('dotenv').config(); // <-- ajoute ceci pour charger .env en local
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } // indispensable pour Neon
+  ssl: { rejectUnauthorized: false }, // requis pour Neon
 });
-
 
 // Transforme n'importe quel objet JSON complexe en string JSON
 function toJSONSafe(value) {
@@ -22,9 +22,9 @@ async function importWorks() {
       const id = work.id;
       const title = toJSONSafe(work.title);
       const description = toJSONSafe(work.description);
-      const image = work.image || null;   // <-- rester en TEXT pour le frontend
+      const image = work.image || null;
       const audio = toJSONSafe(work.audio);
-      const video = work.video || null;   // <-- rester en TEXT
+      const video = work.video || null;
       const history = toJSONSafe(work.history);
       const culturalcontext = toJSONSafe(work.culturalContext);
       const significance = toJSONSafe(work.significance);
@@ -40,13 +40,13 @@ async function importWorks() {
         [id, title, description, image, audio, video, history, culturalcontext, significance, likes, likedBy]
       );
 
-      console.log(`Import OK pour id=${id}`);
+      console.log(`✅ Import OK pour id=${id}`);
     } catch (err) {
-      console.error(`Erreur import id=${work.id} :`, err.message);
+      console.error(`❌ Erreur import id=${work.id} :`, err.message);
     }
   }
 
-  console.log('Import terminé !');
+  console.log('✅ Import terminé !');
   await pool.end();
 }
 
