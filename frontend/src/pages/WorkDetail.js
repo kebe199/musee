@@ -60,6 +60,7 @@ export default function WorkDetail({ lang }) {
   useEffect(() => {
     setLoading(true);
     axios.get(`${process.env.REACT_APP_API_URL}/api/works/${id}`)
+
       .then(res => {
         setWork(res.data);
         setLikes(res.data.likes || 0);
