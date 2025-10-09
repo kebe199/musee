@@ -42,7 +42,7 @@ export default function Home({ lang }) {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('/api/works')
+    axios.get('${process.env.REACT_APP_API_URL}/api/works')
       .then(res => {
         setWorks(res.data);
         setFilteredWorks(res.data);
