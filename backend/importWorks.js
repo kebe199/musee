@@ -1,12 +1,15 @@
+// require('dotenv').config(); 
+
+
+const DATABASE_URL = 'postgresql://neondb_owner:npg_KQHZ2uwcl0Xo@ep-calm-heart-ad8iass8-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
 const { Pool } = require('pg');
 const fs = require('fs');
 
+console.log("DATABASE_URL =", DATABASE_URL);
+
 const pool = new Pool({
-  user: 'musee_user',
-  host: 'localhost',
-  database: 'musee',
-  password: 'musee2025',
-  port: 5432,
+  connectionString: DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // requis pour Neon
 });
 
 // Transforme n'importe quel objet JSON complexe en string JSON
@@ -24,9 +27,9 @@ async function importWorks() {
       const id = work.id;
       const title = toJSONSafe(work.title);
       const description = toJSONSafe(work.description);
-      const image = work.image || null;   // <-- rester en TEXT pour le frontend
+      const image = work.image || null;
       const audio = toJSONSafe(work.audio);
-      const video = work.video || null;   // <-- rester en TEXT
+      const video = work.video || null;
       const history = toJSONSafe(work.history);
       const culturalcontext = toJSONSafe(work.culturalContext);
       const significance = toJSONSafe(work.significance);
@@ -42,13 +45,13 @@ async function importWorks() {
         [id, title, description, image, audio, video, history, culturalcontext, significance, likes, likedBy]
       );
 
-      console.log(`Import OK pour id=${id}`);
+      console.log(`✅ Import OK pour id=${id}`);
     } catch (err) {
-      console.error(`Erreur import id=${work.id} :`, err.message);
+      console.error(`❌ Erreur import id=${work.id} :`, err.message);
     }
   }
 
-  console.log('Import terminé !');
+  console.log('✅ Import terminé !');
   await pool.end();
 }
 

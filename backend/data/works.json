@@ -12,11 +12,13 @@
       "wo": "Masku xew-xew bu bawoo ci cosaan ak aada waa Dan (Kot-d'Iwaar), ñu koy jëfandikoo ci feccu ndoorte ngir màndargaal aar ak xel mu ñaw. Mask boobu dafay màndargaal ngëmu aar askan wi, te boroom xam-xam yi kese ñoo koy sol ci xew-xew yu sell yi."
     },
     "image": "/media/masque1.jpg",
-    "audio": {
-      "en": "/media/Dan mask.mp3",
-      "fr": "/media/Masque dan.mp3",
-      "wo": "/media/masquu dan.mp3"
-    },
+   "audio":   {
+                      "en":  "/media/Dan mask.mp3",
+                      "fr":  "/media/Masque dan.mp3",
+                      "wo":  "/media/masquu dan.mp3"
+                  },
+
+
     "video": "",
     "history": {
       "fr": "Origine : Côte d'Ivoire, région de Man. Utilisé par les danseurs initiés lors des cérémonies pour transmettre les valeurs morales et spirituelles de la communauté. Le masque Dan est considéré comme un pont entre le monde visible et invisible.",
@@ -49,11 +51,12 @@
       "wo": "Yatteef sutura bu jigéen bu cosaanoo Mali, di màndargaal njuram ak naataange. Luwa bu ñuy faral di joxe ci céet yi, dafay fësal yaakaaru mbokk yi ak barkeb maam yi ci sëy bu bees."
     },
     "image": "/media/statue1.jpg",
-    "audio": {
-      "fr": "/media/Statuette de fertilité.mp3",
-      "en": "/media/Fertility Statuette.mp3",
-      "wo": "/media/luwa njuram.mp3"
-    },
+    "audio":  {
+    "fr": "/media/Statuette de fertilité.mp3",
+    "en": "/media/Fertility Statuette.mp3",
+    "wo": "/media/luwa njuram.mp3"
+  },
+
     "video": "",
     "history": {
       "fr": "Origine : Mali, région de Bandiagara. Fabriquée à la main par les sculpteurs dogons, cette statuette incarne la bénédiction et la continuité de la vie. Elle est transmise de génération en génération.",
@@ -87,10 +90,10 @@
     },
     "image": "/media/tissu1.jpg",
     "audio": {
-      "fr": "/media/tissu royal akan.mp3",
-      "en": "/media/Akan royal cloth.mp3",
-      "wo": "/media/tissu njabootu buur wa akan.mp3"
-    },
+    "fr": "/media/tissu royal akan.mp3",
+    "en": "/media/Akan royal cloth.mp3",
+    "wo": "/media/tissu njabootu buur wa akan.mp3"
+  },
     "video": "",
     "history": {
       "fr": "Origine : Ghana, région Ashanti. Le tissu est porté lors des cérémonies royales pour exprimer l'identité et la dignité du peuple Akan. Chaque motif raconte une histoire ou transmet une leçon de vie.",
@@ -121,11 +124,13 @@
       "wo": "Yatteef buñ defaree bant buy màndargaal yàllay Yoruba (Nigeria). Liggéeyu art bu sell boobu dañu koy jëfandikoo ci xew-xewu diine ngir sargal orishas yi ak tëye lëkkaloo ngëm ak Yàlla."
     },
     "image": "/media/yoruba1.jpg",
-    "audio": {
-      "fr": "/media/Sculpture yoruba.mp3",
-      "en": "/media/yoruba sculpture.mp3",
-      "wo": "/media/yaateef yoruba.mp3"
-    },
+    "audio":  {
+    "fr": "/media/Sculpture yoruba.mp3",
+    "en": "/media/yoruba sculpture.mp3",
+    "wo": "/media/yaateef yoruba.mp3"
+  },
+
+
     "video": "",
     "history": {
       "fr": "Origine : Nigeria, région d'Ife. Créée par les maîtres sculpteurs Yoruba, cette sculpture représente l'une des divinités les plus importantes du panthéon Yoruba. Elle est considérée comme un pont entre le monde terrestre et spirituel.",
@@ -160,11 +165,11 @@
       "wo": "Takkaay xaalis cosaan yu waa Tuareg (Sahara). Jigéen ñi ak góor ñi dañuy sol takkaay yu rafet yooyu ngir wane ni dañu am doole ci askan wi ak seen ngëm. Motif bu nekk amna lu muy tekki."
     },
     "image": "/media/touareg1.jpg",
-    "audio": {
-      "fr": "/media/bijoux touareg.mp3",
-      "en": "/media/Touareg jewerly.mp3",
-      "wo": "/media/takkay tuareg.mp3"
-    },
+    "audio":  {
+    "fr": "/media/bijoux touareg.mp3",
+    "en": "/media/Touareg jewerly.mp3",
+    "wo": "/media/takkay tuareg.mp3"
+  },
     "video": "",
     "history": {
       "fr": "Origine : Sahara, région du Niger et du Mali. Les bijoux Touareg sont fabriqués par les forgerons nomades selon des techniques ancestrales. L'argent est considéré comme un métal pur qui repousse les mauvais esprits.",
@@ -215,8 +220,6 @@
       "fr": "Symbole de maîtrise technique et de mémoire historique africaine, reliant art, pouvoir et spiritualité.",
       "en": "Symbol of technical mastery and African historical memory, connecting art, power, and spirituality.",
       "wo": "Màndarga xam-xam xarala yu bees ak fàttaliku taarixu Afrique, boole art, doole ak ngëm."
-    },
-    "likedBy": [],
-    "likes": 0
+    }
   }
 ]

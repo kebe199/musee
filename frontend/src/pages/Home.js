@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import WorkCard from '../components/WorkCard';
-import { getWorks } from '../api';
-
 
 const translations = {
   fr: {
@@ -40,15 +39,15 @@ export default function Home({ lang }) {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [topLiked, setTopLiked] = useState(null);
-  
+
   useEffect(() => {
     setLoading(true);
-    getWorks()
-      .then(({ data }) => {
-        setWorks(data);
-        setFilteredWorks(data);
+    axios.get(`https://musee-1.onrender.com/api/works`)
+      .then(res => {
+        setWorks(res.data);
+        setFilteredWorks(res.data);
         // compute most liked
-        const withLikes = (data || []).map(w => ({ ...w, likes: typeof w.likes === 'number' ? w.likes : 0 }));
+        const withLikes = (res.data || []).map(w => ({ ...w, likes: typeof w.likes === 'number' ? w.likes : 0 }));
         if (withLikes.length) {
           const top = withLikes.reduce((a, b) => (b.likes > (a?.likes || 0) ? b : a), withLikes[0]);
           setTopLiked(top);
@@ -59,16 +58,16 @@ export default function Home({ lang }) {
       })
       .catch(err => {
         console.error(err);
-        setError(err.message || 'Erreur');
+        setError(err.message);
       })
       .finally(() => setLoading(false));
   }, []);
-  
+
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredWorks(works);
     } else {
-      const filtered = works.filter(work =>
+      const filtered = works.filter(work => 
         work.title[lang].toLowerCase().includes(searchTerm.toLowerCase()) ||
         work.description[lang].toLowerCase().includes(searchTerm.toLowerCase())
       );

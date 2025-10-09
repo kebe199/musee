@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getCurrentEmail } from '../auth';
-import { getWork, likeWork } from '../api';
+import axios from 'axios';
+import { getCurrentEmail, isAuthenticated } from '../auth';
+
 const translations = {
   fr: {
     back: "← Retour à la collection",
@@ -58,20 +59,21 @@ export default function WorkDetail({ lang }) {
 
   useEffect(() => {
     setLoading(true);
-    getWork(id)
-      .then(({ data }) => {
-        setWork(data);
-        setLikes(data.likes || 0);
+    axios.get(`https://musee-1.onrender.com/api/works/${id}`)
+
+      .then(res => {
+        setWork(res.data);
+        setLikes(res.data.likes || 0);
         try {
           const email = (getCurrentEmail() || '').toLowerCase();
-          const likedBy = Array.isArray(data.likedBy) ? data.likedBy.map(v => String(v).toLowerCase()) : [];
-          setLiked(!!email && likedBy.includes(email));
+          const likedBy = Array.isArray(res.data.likedBy) ? res.data.likedBy.map(v => String(v).toLowerCase()) : [];
+          setLiked(email && likedBy.includes(email));
         } catch { setLiked(false); }
         setError(null);
       })
       .catch(err => {
         console.error(err);
-        setError(err.message || 'Erreur');
+        setError(err.message);
       })
       .finally(() => setLoading(false));
   }, [id]);
@@ -131,10 +133,10 @@ export default function WorkDetail({ lang }) {
       return;
     }
     try {
-      const { data } = await likeWork(id, email);
-      if (data && typeof data.likes === 'number') {
-        setLikes(data.likes);
-        if (typeof data.liked === 'boolean') setLiked(data.liked);
+      const res = await axios.post(`https://musee-1.onrender.com/api/works/${id}/like`, { email });
+      if (res?.data && typeof res.data.likes === 'number') {
+        setLikes(res.data.likes);
+        if (typeof res.data.liked === 'boolean') setLiked(res.data.liked);
       }
     } catch (_) {
       // ignore silently or show a toast
