@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import WorkCard from '../components/WorkCard';
-import { getWorks } from '../api';
 import { getWorks } from '../api';
 
 
@@ -42,21 +40,15 @@ export default function Home({ lang }) {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [topLiked, setTopLiked] = useState(null);
-  useEffect(() => {
-    getWorks().then(res => setWorks(res.data))
-             .catch(err => console.error(err));
-  }, []);
-
+  
   useEffect(() => {
     setLoading(true);
-  
-getWorks().then(res => setWorks(res.data))
-
-      .then(res => {
-        setWorks(res.data);
-        setFilteredWorks(res.data);
+    getWorks()
+      .then(({ data }) => {
+        setWorks(data);
+        setFilteredWorks(data);
         // compute most liked
-        const withLikes = (res.data || []).map(w => ({ ...w, likes: typeof w.likes === 'number' ? w.likes : 0 }));
+        const withLikes = (data || []).map(w => ({ ...w, likes: typeof w.likes === 'number' ? w.likes : 0 }));
         if (withLikes.length) {
           const top = withLikes.reduce((a, b) => (b.likes > (a?.likes || 0) ? b : a), withLikes[0]);
           setTopLiked(top);
@@ -67,16 +59,16 @@ getWorks().then(res => setWorks(res.data))
       })
       .catch(err => {
         console.error(err);
-        setError(err.message);
+        setError(err.message || 'Erreur');
       })
       .finally(() => setLoading(false));
   }, []);
-
+  
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredWorks(works);
     } else {
-      const filtered = works.filter(work => 
+      const filtered = works.filter(work =>
         work.title[lang].toLowerCase().includes(searchTerm.toLowerCase()) ||
         work.description[lang].toLowerCase().includes(searchTerm.toLowerCase())
       );
