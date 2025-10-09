@@ -29,7 +29,7 @@ function AddWorkForm({ onClose, onSuccess }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('${process.env.REACT_APP_API_URL}/api/works', {
+      const res = await fetch('https://musee-1.onrender.com/api/works', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -106,7 +106,7 @@ function EditWorkForm({ work, onClose, onSuccess }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/works/${work.id}`, {
+      const res = await fetch(`https://musee-1.onrender.com/api/works/${work.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -161,19 +161,19 @@ export default function Admin() {
   const [editing, setEditing] = useState(null);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`)
+    fetch(`https://musee-1.onrender.com/api/works?admin=1`)
       .then(res => res.json())
       .then(data => { setWorks(data); setLoading(false); })
       .catch(() => { setError("Erreur lors du chargement des oeuvres."); setLoading(false); });
   }, []);
 
   async function refreshWorks() {
-    try { const data = await fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`).then(r => r.json()); setWorks(data); } catch {}
+    try { const data = await fetch(`https://musee-1.onrender.com/api/works?admin=1`).then(r => r.json()); setWorks(data); } catch {}
   }
 
   async function handleDelete(id) {
     if (!window.confirm('Supprimer définitivement cette oeuvre ?')) return;
-    try { const res = await fetch(`${process.env.REACT_APP_API_URL}/api/works/${id}`, { method: 'DELETE' }); if (!res.ok) throw new Error('fail'); await refreshWorks(); }
+    try { const res = await fetch(`https://musee-1.onrender.com/api/works/${id}`, { method: 'DELETE' }); if (!res.ok) throw new Error('fail'); await refreshWorks(); }
     catch { alert('�chec de la suppression'); }
   }
 
@@ -274,7 +274,7 @@ export default function Admin() {
           onClose={() => setShowAddForm(false)}
           onSuccess={() => {
             setLoading(true);
-            fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`)
+            fetch(`https://musee-1.onrender.com/api/works?admin=1`)
               .then(res => res.json())
               .then(data => { setWorks(data); setLoading(false); });
           }}
@@ -286,7 +286,7 @@ export default function Admin() {
           onClose={() => setEditing(null)}
           onSuccess={() => {
             setLoading(true);
-            fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`)
+            fetch(`https://musee-1.onrender.com/api/works?admin=1`)
               .then(res => res.json())
               .then(data => { setWorks(data); setLoading(false); });
           }}

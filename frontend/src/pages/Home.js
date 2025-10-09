@@ -42,7 +42,7 @@ export default function Home({ lang }) {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${process.env.REACT_APP_API_URL}/api/works`)
+    axios.get(`https://musee-1.onrender.com/api/works`)
       .then(res => {
         setWorks(res.data);
         setFilteredWorks(res.data);

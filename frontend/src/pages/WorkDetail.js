@@ -59,7 +59,7 @@ export default function WorkDetail({ lang }) {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${process.env.REACT_APP_API_URL}/api/works/${id}`)
+    axios.get(`https://musee-1.onrender.com/api/works/${id}`)
 
       .then(res => {
         setWork(res.data);
@@ -133,7 +133,7 @@ export default function WorkDetail({ lang }) {
       return;
     }
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/works/${id}/like`, { email });
+      const res = await axios.post(`https://musee-1.onrender.com/api/works/${id}/like`, { email });
       if (res?.data && typeof res.data.likes === 'number') {
         setLikes(res.data.likes);
         if (typeof res.data.liked === 'boolean') setLiked(res.data.liked);
