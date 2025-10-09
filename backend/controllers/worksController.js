@@ -56,11 +56,14 @@ function attachFullUrls(req, work) {
 
 // Liste des œuvres
 exports.list = (req, res) => {
+  console.log('[worksController] Route /api/works appelée');
   const data = loadDataSafe();
   if (!data) {
+    console.error('[worksController] Données invalides');
     return res.status(500).json({ error: 'Données invalides (works.json)' });
   }
   try {
+    console.log('[worksController] Données chargées:', data.length, 'œuvres');
     // Retourner toutes les œuvres; l'archivage est supprimé
     const mapped = data.map(w => attachFullUrls(req, w));
     res.json(mapped);

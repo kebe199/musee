@@ -1,11 +1,14 @@
 {
-  "name": "backend",
+  "name": "musee-backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node start.js",
+    "dev": "nodemon start.js",
     "gen-qrcodes": "node generate_qrcodes.js"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -22,8 +25,8 @@
   "devDependencies": {
     "nodemon": "^3.1.10"
   },
-  "description": "",
-  "keywords": [],
-  "author": "",
+  "description": "Backend API pour le Musée des Civilisations Noires",
+  "keywords": ["museum", "api", "culture"],
+  "author": "Musée des Civilisations Noires",
   "license": "ISC"
 }

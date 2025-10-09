@@ -29,5 +29,16 @@ app.get('/', (req, res) => {
   res.send('✅ Backend du musée fonctionne correctement');
 });
 
+// Route de test pour l'API
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'API fonctionne', timestamp: new Date().toISOString() });
+});
+
+// Logs de débogage pour toutes les requêtes
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  next();
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
