@@ -164,10 +164,14 @@ function App() {
           />
           <span>&copy; {new Date().getFullYear()} Musée des Civilisations Noires</span>
           <span> | </span>
-          <Link to="/about" className="footer-link">À propos</Link>
-          <span> | </span>
+          <Link to="/about" className="footer-link">À propos </Link>
+          
           {isAdmin() && (
+            <>
+            <span> | </span>
             <Link to="/admin" className="footer-link" style={{marginLeft: 16, opacity: 0.7}}>Admin</Link>
+            </>
+            
           )}
         </footer>
         </div>

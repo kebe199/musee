@@ -47,7 +47,7 @@ function AddWorkForm({ onClose, onSuccess }) {
   return (
     <div className="modal-backdrop">
       <form className="add-work-form" onSubmit={handleSubmit}>
-        <h2>Ajouter une œuvre</h2>
+        <h2>Ajouter une oeuvre</h2>
         <label>Titre FR <input name="title" data-lang="fr" value={form.title.fr} onChange={handleChange} required /></label>
         <label>Titre EN <input name="title" data-lang="en" value={form.title.en} onChange={handleChange} /></label>
         <label>Titre WO <input name="title" data-lang="wo" value={form.title.wo} onChange={handleChange} /></label>
@@ -56,7 +56,7 @@ function AddWorkForm({ onClose, onSuccess }) {
         <label>Description WO <textarea name="description" data-lang="wo" value={form.description.wo} onChange={handleChange} /></label>
         <label>Image (chemin ex: /media/masque1.jpg) <input name="image" value={form.image} onChange={handleChange} required /></label>
         <label>Audio (chemin ex: /media/masque1_fr.mp3) <input name="audio" value={form.audio} onChange={handleChange} /></label>
-        <label>Vidéo <input name="video" value={form.video} onChange={handleChange} /></label>
+        <label>VidÃ©o <input name="video" value={form.video} onChange={handleChange} /></label>
         <label>Histoire <textarea name="history" value={form.history} onChange={handleChange} /></label>
         <label>Contexte culturel FR <input name="culturalContext" data-lang="fr" value={form.culturalContext.fr} onChange={handleChange} /></label>
         <label>Contexte culturel EN <input name="culturalContext" data-lang="en" value={form.culturalContext.en} onChange={handleChange} /></label>
@@ -111,12 +111,12 @@ function EditWorkForm({ work, onClose, onSuccess }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
-      if (!res.ok) throw new Error("Erreur lors de la mise à jour");
+      if (!res.ok) throw new Error("Erreur lors de la mise ï¿½ jour");
       setLoading(false);
       onSuccess();
       onClose();
     } catch (err) {
-      setError("Erreur lors de la mise à jour");
+      setError("Erreur lors de la mise ï¿½ jour");
       setLoading(false);
     }
   }
@@ -124,7 +124,7 @@ function EditWorkForm({ work, onClose, onSuccess }) {
   return (
     <div className="modal-backdrop">
       <form className="add-work-form" onSubmit={handleSubmit}>
-        <h2>Modifier l'œuvre #{work.id}</h2>
+        <h2>Modifier l'oeuvre #{work.id}</h2>
         <label>Titre FR <input name="title" data-lang="fr" value={form.title.fr} onChange={handleChange} required /></label>
         <label>Titre EN <input name="title" data-lang="en" value={form.title.en} onChange={handleChange} /></label>
         <label>Titre WO <input name="title" data-lang="wo" value={form.title.wo} onChange={handleChange} /></label>
@@ -133,7 +133,7 @@ function EditWorkForm({ work, onClose, onSuccess }) {
         <label>Description WO <textarea name="description" data-lang="wo" value={form.description.wo} onChange={handleChange} /></label>
         <label>Image <input name="image" value={form.image} onChange={handleChange} required /></label>
         <label>Audio <input name="audio" value={form.audio} onChange={handleChange} /></label>
-        <label>Vidéo <input name="video" value={form.video} onChange={handleChange} /></label>
+        <label>VidÃ©o <input name="video" value={form.video} onChange={handleChange} /></label>
         <label>Histoire <textarea name="history" value={form.history} onChange={handleChange} /></label>
         <label>Contexte culturel FR <input name="culturalContext" data-lang="fr" value={form.culturalContext.fr} onChange={handleChange} /></label>
         <label>Contexte culturel EN <input name="culturalContext" data-lang="en" value={form.culturalContext.en} onChange={handleChange} /></label>
@@ -164,7 +164,7 @@ export default function Admin() {
     fetch('/api/works?admin=1')
       .then(res => res.json())
       .then(data => { setWorks(data); setLoading(false); })
-      .catch(() => { setError("Erreur lors du chargement des œuvres."); setLoading(false); });
+      .catch(() => { setError("Erreur lors du chargement des ï¿½uvres."); setLoading(false); });
   }, []);
 
   async function refreshWorks() {
@@ -172,9 +172,9 @@ export default function Admin() {
   }
 
   async function handleDelete(id) {
-    if (!window.confirm('Supprimer définitivement cette œuvre ?')) return;
+    if (!window.confirm('Supprimer dï¿½finitivement cette ï¿½uvre ?')) return;
     try { const res = await fetch(`/api/works/${id}`, { method: 'DELETE' }); if (!res.ok) throw new Error('fail'); await refreshWorks(); }
-    catch { alert('Échec de la suppression'); }
+    catch { alert('ï¿½chec de la suppression'); }
   }
 
   function handleEdit(work) {
@@ -191,9 +191,9 @@ export default function Admin() {
 
   return (
     <div className="admin-page">
-      <h1>Administration des œuvres</h1>
+      <h1>Administration des Å“uvres</h1>
       <div className="admin-actions">
-        <button className="btn-primary" onClick={() => setShowAddForm(true)}>Créer une œuvre</button>
+        <button className="btn-primary" onClick={() => setShowAddForm(true)}>CrÃ©er une Å“uvre</button>
         <button className="btn-secondary" style={{ marginLeft: 12 }} onClick={() => setViewMode(viewMode === 'list' ? 'card' : 'list')}>
           {viewMode === 'list' ? 'Afficher en cartes' : 'Afficher en liste'}
         </button>
