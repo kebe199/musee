@@ -1,6 +1,8 @@
+require('dotenv').config(); 
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
+
 const { Pool } = require('pg');
 const fs = require('fs');
-require('dotenv').config(); // <-- ajoute ceci pour charger .env en local
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
