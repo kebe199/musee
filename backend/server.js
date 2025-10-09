@@ -3,6 +3,9 @@ const cors = require('cors');
 const path = require('path');
 const worksRoutes = require('./routes/works');
 
+// Initialiser les données au démarrage
+require('./init-data');
+
 const app = express();
 
 // Configuration CORS pour production

@@ -10,3 +10,5 @@ services:
         value: production
       - key: CORS_ORIGIN
         value: https://musee-qb6n.onrender.com
+      - key: PORT
+        value: 3001
