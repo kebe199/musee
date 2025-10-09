@@ -10,7 +10,7 @@ const app = express();
 
 // Configuration CORS pour production
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://musee-qb6n.onrender.com'],
   credentials: true,
   optionsSuccessStatus: 200
 };
