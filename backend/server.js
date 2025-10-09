@@ -8,6 +8,8 @@ require('./init-data');
 
 const app = express();
 
+app.enable('trust proxy');
+
 // Configuration CORS pour production
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://musee-qb6n.onrender.com'],

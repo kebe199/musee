@@ -28,7 +28,10 @@ function saveDataSafe(arr) {
 }
 
 function attachFullUrls(req, work) {
-  const host = `${req.protocol}://${req.get('host')}`;
+  const forwardedProto = req.headers['x-forwarded-proto'] || req.protocol;
+  const protocol = forwardedProto.includes('https') ? 'https' : 'http';
+  const host = `${protocol}://${req.get('host')}`;
+
   const isAbs = (u) => typeof u === 'string' && /^(https?:)?\/\//i.test(u);
   const mapUrl = (val) => {
     if (!val) return '';
@@ -46,6 +49,7 @@ function attachFullUrls(req, work) {
     }
     return '';
   };
+
   return {
     ...work,
     image: mapUrl(work.image),
@@ -53,6 +57,7 @@ function attachFullUrls(req, work) {
     video: mapUrl(work.video)
   };
 }
+
 
 // Liste des œuvres
 exports.list = (req, res) => {
