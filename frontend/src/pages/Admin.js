@@ -111,12 +111,12 @@ function EditWorkForm({ work, onClose, onSuccess }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
-      if (!res.ok) throw new Error("Erreur lors de la mise � jour");
+      if (!res.ok) throw new Error("Erreur lors de la mise à jour");
       setLoading(false);
       onSuccess();
       onClose();
     } catch (err) {
-      setError("Erreur lors de la mise � jour");
+      setError("Erreur lors de la mise à jour");
       setLoading(false);
     }
   }
@@ -161,14 +161,14 @@ export default function Admin() {
   const [editing, setEditing] = useState(null);
 
   useEffect(() => {
-    fetch('${process.env.REACT_APP_API_URL}/api/works?admin=1')
+    fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`)
       .then(res => res.json())
       .then(data => { setWorks(data); setLoading(false); })
-      .catch(() => { setError("Erreur lors du chargement des �uvres."); setLoading(false); });
+      .catch(() => { setError("Erreur lors du chargement des oeuvres."); setLoading(false); });
   }, []);
 
   async function refreshWorks() {
-    try { const data = await fetch('${process.env.REACT_APP_API_URL}/api/works?admin=1').then(r => r.json()); setWorks(data); } catch {}
+    try { const data = await fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`).then(r => r.json()); setWorks(data); } catch {}
   }
 
   async function handleDelete(id) {
@@ -274,7 +274,7 @@ export default function Admin() {
           onClose={() => setShowAddForm(false)}
           onSuccess={() => {
             setLoading(true);
-            fetch('${process.env.REACT_APP_API_URL}/api/works?admin=1')
+            fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`)
               .then(res => res.json())
               .then(data => { setWorks(data); setLoading(false); });
           }}
@@ -286,7 +286,7 @@ export default function Admin() {
           onClose={() => setEditing(null)}
           onSuccess={() => {
             setLoading(true);
-            fetch('${process.env.REACT_APP_API_URL}/api/works?admin=1')
+            fetch(`${process.env.REACT_APP_API_URL}/api/works?admin=1`)
               .then(res => res.json())
               .then(data => { setWorks(data); setLoading(false); });
           }}
